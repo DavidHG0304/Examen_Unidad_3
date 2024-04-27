@@ -1,6 +1,5 @@
 package paneles;
 
-<<<<<<< HEAD
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,27 +9,12 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Font;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.BoxLayout;
-=======
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
->>>>>>> 48d99de (login-creado)
 
 public class PrincipalPanel extends JFrame {
 
@@ -158,6 +142,14 @@ public class PrincipalPanel extends JFrame {
 		btnLogin.setBorderPainted(false);
 		panelR.add(btnLogin);
 		
+		//Cambio nomás para hacer test de push
+		btnLogin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hola");
+			}
+		});
+		
 		JButton btnRegistro = new JButton("Registro");
 		btnRegistro.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnRegistro.setBackground(new Color(254, 180, 54));
@@ -219,16 +211,12 @@ public class PrincipalPanel extends JFrame {
 		panelCentral.add(panelImagen);
 		panelImagen.setLayout(null);
 		
-<<<<<<< HEAD
 		JLabel lblImagen = new JLabel("*imagenCarro*");
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagen.setBounds(21, 114, 409, 255);
-=======
-		JLabel lblImagen = new JLabel("");
 		lblImagen.setIcon(null);
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagen.setBounds(10, 58, 420, 331);
->>>>>>> 48d99de (login-creado)
 		panelImagen.add(lblImagen);
 		JPanel panel_inferior = new JPanel();
 		panel_inferior.setBackground(new Color(254, 180, 24));
@@ -286,8 +274,4 @@ public class PrincipalPanel extends JFrame {
 		lblTxt4_4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt4_4);
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 48d99de (login-creado)
