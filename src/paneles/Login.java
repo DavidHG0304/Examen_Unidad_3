@@ -15,6 +15,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -103,12 +105,26 @@ public class Login extends JFrame {
 		panel_2.add(textField_1);
 		
 		JButton btnNewButton = new JButton("Iniciar sesión");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				PrincipalPanel panel_principal= new PrincipalPanel();
+				panel_principal.setVisible(true);
+			}
+		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(225, 511, 124, 36);
 		panel_2.add(btnNewButton);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Registro registro = new Registro();
+				registro.setVisible(true);
+			}
+		});
 		btnRegistrarse.setBackground(new Color(0, 128, 255));
 		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistrarse.setBounds(42, 511, 124, 36);

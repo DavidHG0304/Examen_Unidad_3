@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Registro extends JFrame {
 
@@ -31,6 +33,7 @@ public class Registro extends JFrame {
 				try {
 					Registro frame = new Registro();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,12 +104,26 @@ public class Registro extends JFrame {
 		panel_2.add(textField_1);
 		
 		JButton btnNewButton = new JButton("Iniciar sesión");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login login = new Login();
+				login.setVisible(true);
+			}
+		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(225, 561, 124, 36);
 		panel_2.add(btnNewButton);
 		
 		JButton btnRegistrarse = new JButton("Crear cuenta");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				PrincipalPanel panel_principal= new PrincipalPanel();
+				panel_principal.setVisible(true);
+			}
+		});
 		btnRegistrarse.setBackground(new Color(0, 128, 255));
 		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistrarse.setBounds(42, 561, 124, 36);

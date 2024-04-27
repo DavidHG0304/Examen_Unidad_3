@@ -146,11 +146,21 @@ public class PrincipalPanel extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Hola");
+				dispose();
+				Login login = new Login();
+				login.setVisible(true);
 			}
 		});
 		
 		JButton btnRegistro = new JButton("Registro");
+		btnRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Registro registro = new Registro();
+				registro.setVisible(true);
+					
+			}
+		});
 		btnRegistro.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnRegistro.setBackground(new Color(254, 180, 54));
 		btnRegistro.setForeground(new Color(255, 255, 255));
