@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +17,15 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class PrincipalPanel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_principal;
+	
+	Login login;
+	Registro registro;
 	
 	Font palabrasNormal = new Font("Arial", Font.BOLD, 20);
 
@@ -33,6 +39,7 @@ public class PrincipalPanel extends JFrame {
 					PrincipalPanel frame = new PrincipalPanel();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,10 +51,12 @@ public class PrincipalPanel extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalPanel() {
+		registro = new Registro(this);
+		login = new Login(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		panel_principal = new JPanel();
-		panel_principal.setBackground(new Color(240, 197, 64));
+		panel_principal.setBackground(new Color(83, 169, 255));
 		panel_principal.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(panel_principal);
@@ -59,47 +68,57 @@ public class PrincipalPanel extends JFrame {
 		
 		JPanel panelLogos = new JPanel();
 		panel_central.add(panelLogos, BorderLayout.SOUTH);
-		panelLogos.setLayout(new GridLayout(2, 10, 0, 0));
+		panelLogos.setLayout(new GridLayout(1, 10, 0, 0));
 		
-		JLabel lblLogo = new JLabel("*logo*");
+		JLabel lblLogo = new JLabel(new ImageIcon(getClass().getResource("nissan.png")));
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogos.add(lblLogo);
 		
-		JLabel lblLogo2 = new JLabel("*logo*");
+		JLabel lblLogo2 = new JLabel("");
+		lblLogo2.setIcon(new ImageIcon(getClass().getResource("volkswagen.png")));
 		lblLogo2.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogos.add(lblLogo2);
 		
-		JLabel lblLogo3 = new JLabel("*logo*");
+		JLabel lblLogo3 = new JLabel("");
+		lblLogo3.setIcon(new ImageIcon(getClass().getResource("honda.png")));
 		lblLogo3.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogos.add(lblLogo3);
 		
-		JLabel lblLogo4 = new JLabel("*logo*");
+		JLabel lblLogo4 = new JLabel("");
+		lblLogo4.setIcon(new ImageIcon(getClass().getResource("jeep.png")));
 		lblLogo4.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogos.add(lblLogo4);
 		
-		JLabel lblLogo5 = new JLabel("*logo*");
+		
+		JLabel lblLogo5 = new JLabel("");
+		lblLogo5.setIcon(new ImageIcon(getClass().getResource("ferrari.png")));
 		lblLogo5.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogos.add(lblLogo5);
 		
-		JLabel lblEspacio1 = new JLabel("");
-		lblEspacio1.setHorizontalAlignment(SwingConstants.CENTER);
-		panelLogos.add(lblEspacio1);
+		JLabel lblLogo6 = new JLabel("");
+		lblLogo6.setIcon(new ImageIcon(getClass().getResource("mitsubishi.png")));
+		lblLogo6.setHorizontalAlignment(SwingConstants.CENTER);
+		panelLogos.add(lblLogo6);
 		
-		JLabel lblEspacio2 = new JLabel("");
-		lblEspacio2.setHorizontalAlignment(SwingConstants.CENTER);
-		panelLogos.add(lblEspacio2);
+		JLabel lblLogo7 = new JLabel("");
+		lblLogo7.setIcon(new ImageIcon(getClass().getResource("toyota.png")));
+		lblLogo7.setHorizontalAlignment(SwingConstants.CENTER);
+		panelLogos.add(lblLogo7);
 		
-		JLabel lblEspacio3 = new JLabel("");
-		lblEspacio3.setHorizontalAlignment(SwingConstants.CENTER);
-		panelLogos.add(lblEspacio3);
+		JLabel lblLogo8 = new JLabel("");
+		lblLogo8.setIcon(new ImageIcon(getClass().getResource("chevrolet.png")));
+		lblLogo8.setHorizontalAlignment(SwingConstants.CENTER);
+		panelLogos.add(lblLogo8);
 		
-		JLabel lblEspacio4 = new JLabel("");
-		lblEspacio4.setHorizontalAlignment(SwingConstants.CENTER);
-		panelLogos.add(lblEspacio4);
+		JLabel lblLogo9 = new JLabel("");
+		lblLogo9.setIcon(new ImageIcon(getClass().getResource("bmw.png")));
+		lblLogo9.setHorizontalAlignment(SwingConstants.CENTER);
+		panelLogos.add(lblLogo9);
 		
-		JLabel lblEspacio5 = new JLabel("");
-		lblEspacio5.setHorizontalAlignment(SwingConstants.CENTER);
-		panelLogos.add(lblEspacio5);
+		JLabel lblLogo10 = new JLabel("");
+		lblLogo10.setIcon(new ImageIcon(getClass().getResource("lamborghini.png")));
+		lblLogo10.setHorizontalAlignment(SwingConstants.CENTER);
+		panelLogos.add(lblLogo10);
 		
 		JPanel panelBotones = new JPanel();
 		panel_central.add(panelBotones, BorderLayout.NORTH);
@@ -128,12 +147,34 @@ public class PrincipalPanel extends JFrame {
 		panel.add(panelR);
 		panelR.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JButton btnReserv = new JButton("Reservacion");
+		JButton btnReserv = new JButton("Catalogo/Renta");
 		btnReserv.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnReserv.setBackground(new Color(255, 255, 255));
 		btnReserv.setForeground(new Color(78, 121, 222));
 		btnReserv.setBorderPainted(false);
 		panelR.add(btnReserv);
+		
+		
+		btnReserv.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(!registro.getHayCuenta()){
+					JOptionPane.showMessageDialog(null, "No hay cuenta, mandar a login, esto puedo cambiar solo es una idea","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
+					dispose();
+					login.setVisible(true);
+					login.setLocationRelativeTo(null);
+				}else {
+					dispose();
+					JOptionPane.showMessageDialog(null, "Ya hay cuenta, mandar a renta","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
+				}
+		
+				
+				
+			}
+		});
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -147,25 +188,28 @@ public class PrincipalPanel extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Login login = new Login();
 				login.setVisible(true);
+				login.setLocationRelativeTo(null);
 			}
 		});
 		
 		JButton btnRegistro = new JButton("Registro");
-		btnRegistro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Registro registro = new Registro();
-				registro.setVisible(true);
-					
-			}
-		});
 		btnRegistro.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnRegistro.setBackground(new Color(254, 180, 54));
+		btnRegistro.setBackground(new Color(0, 108, 217));
 		btnRegistro.setForeground(new Color(255, 255, 255));
 		btnRegistro.setBorderPainted(false);
 		panelR.add(btnRegistro);
+		
+		btnRegistro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				registro.setVisible(true);
+				registro.setLocationRelativeTo(null);
+			}
+		});
 		
 		JPanel panelCentral = new JPanel();
 		panel_central.add(panelCentral, BorderLayout.CENTER);
@@ -212,7 +256,7 @@ public class PrincipalPanel extends JFrame {
 		
 		JLabel lblLoewmIpsumDolor = new JLabel("Lorem ipsum");
 		lblLoewmIpsumDolor.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLoewmIpsumDolor.setForeground(new Color(254, 180, 54));
+		lblLoewmIpsumDolor.setForeground(new Color(240, 116, 55));
 		lblLoewmIpsumDolor.setFont(new Font("Arial", Font.BOLD, 40));
 		lblLoewmIpsumDolor.setBounds(55, 217, 407, 47);
 		panelDescripcion.add(lblLoewmIpsumDolor);
@@ -221,15 +265,20 @@ public class PrincipalPanel extends JFrame {
 		panelCentral.add(panelImagen);
 		panelImagen.setLayout(null);
 		
-		JLabel lblImagen = new JLabel("*imagenCarro*");
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setBounds(21, 114, 409, 255);
-		lblImagen.setIcon(null);
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setBounds(10, 58, 420, 331);
-		panelImagen.add(lblImagen);
+		JLabel labelIMG = new JLabel("");
+		labelIMG.setBounds(0, 144, 461, 205);
+		panelImagen.add(labelIMG);
+		labelIMG.setIcon(new ImageIcon(getClass().getResource("camaron.png")));
+		
+		JLabel lblAux = new JLabel("");
+		lblAux.setBackground(new Color(0, 128, 255));
+		lblAux.setBounds(239, 123, 222, 197);
+		lblAux.setOpaque(true);
+		
+		panelImagen.add(lblAux);
+		
 		JPanel panel_inferior = new JPanel();
-		panel_inferior.setBackground(new Color(254, 180, 24));
+		panel_inferior.setBackground(new Color(0, 108, 217));
 		panel_principal.add(panel_inferior, BorderLayout.SOUTH);
 		panel_inferior.setLayout(new GridLayout(2, 4, 10, 0));
 		
@@ -258,30 +307,30 @@ public class PrincipalPanel extends JFrame {
 		lblTxt4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt4);
 		
-		JLabel lblTxt1_1 = new JLabel("Autos");
-		lblTxt1_1.setFont(new Font("Arial", Font.BOLD, 14));
-		lblTxt1_1.setForeground(new Color(255, 255, 255));
+		JLabel lblTxt5 = new JLabel("Autos");
+		lblTxt5.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt5.setForeground(new Color(255, 255, 255));
 		
 		
-		lblTxt1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_inferior.add(lblTxt1_1);
+		lblTxt5.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_inferior.add(lblTxt5);
 		
-		JLabel lblTxt2_2 = new JLabel("Expertos en venta");
-		lblTxt2_2.setFont(new Font("Arial", Font.BOLD, 14));
-		lblTxt2_2.setForeground(new Color(255, 255, 255));
-		lblTxt2_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_inferior.add(lblTxt2_2);
+		JLabel lblTxt6 = new JLabel("Expertos en venta");
+		lblTxt6.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt6.setForeground(new Color(255, 255, 255));
+		lblTxt6.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_inferior.add(lblTxt6);
 		
-		JLabel lblTxt3_3 = new JLabel("Localizaciones");
-		lblTxt3_3.setFont(new Font("Arial", Font.BOLD, 14));
-		lblTxt3_3.setForeground(new Color(255, 255, 255));
-		lblTxt3_3.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_inferior.add(lblTxt3_3);
+		JLabel lblTxt7 = new JLabel("Localizaciones");
+		lblTxt7.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt7.setForeground(new Color(255, 255, 255));
+		lblTxt7.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_inferior.add(lblTxt7);
 		
-		JLabel lblTxt4_4 = new JLabel("Compradores");
-		lblTxt4_4.setFont(new Font("Arial", Font.BOLD, 14));
-		lblTxt4_4.setForeground(new Color(255, 255, 255));
-		lblTxt4_4.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_inferior.add(lblTxt4_4);
+		JLabel lblTxt8 = new JLabel("Compradores");
+		lblTxt8.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt8.setForeground(new Color(255, 255, 255));
+		lblTxt8.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_inferior.add(lblTxt8);
 	}
 }
