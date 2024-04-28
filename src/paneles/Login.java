@@ -212,7 +212,7 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("No tiene una cuenta?");
 		lblNewLabel_4.setForeground(new Color(56, 120, 237));
 		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		lblNewLabel_4.setBounds(42, 545, 137, 14);
+		lblNewLabel_4.setBounds(42, 545, 158, 14);
 		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Inicie sesion para continuar");

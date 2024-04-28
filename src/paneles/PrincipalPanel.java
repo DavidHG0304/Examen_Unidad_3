@@ -270,42 +270,42 @@ public class PrincipalPanel extends JFrame {
 		panelCentral.add(panelDescripcion);
 		panelDescripcion.setLayout(null);
 		
-		JLabel lblDescripcion1 = new JLabel("Lorem ipsum dolor");
+		JLabel lblDescripcion1 = new JLabel("Preferido por los");
 		lblDescripcion1.setFont(new Font("Segoe UI", Font.BOLD, 40));
 		lblDescripcion1.setForeground(new Color(51, 101, 217));
 		lblDescripcion1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion1.setBounds(55, 125, 407, 47);
 		panelDescripcion.add(lblDescripcion1);
 		
-		JLabel lblDescripcion2 = new JLabel(" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed");
+		JLabel lblDescripcion2 = new JLabel("Encuentranos en cualquier parte del mundo y dsifruta de autos de lujos");
 		lblDescripcion2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion2.setForeground(new Color(51, 101, 217));
 		lblDescripcion2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcion2.setBounds(55, 275, 407, 27);
 		panelDescripcion.add(lblDescripcion2);
 		
-		JLabel lblDescripcion3 = new JLabel(" do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+		JLabel lblDescripcion3 = new JLabel("al mejor precio del mercado, comunicate con uno de nuestros expertos ");
 		lblDescripcion3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion3.setForeground(new Color(51, 101, 217));
 		lblDescripcion3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcion3.setBounds(55, 295, 407, 27);
 		panelDescripcion.add(lblDescripcion3);
 		
-		JLabel lblDescripcion4 = new JLabel(" Ut enim ad minim veniam, quis nostrud exercitation ullamco");
+		JLabel lblDescripcion4 = new JLabel("para ayudarte a escoger tu mejor opcion y a tus gustos");
 		lblDescripcion4.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion4.setForeground(new Color(51, 101, 217));
 		lblDescripcion4.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcion4.setBounds(55, 317, 407, 27);
 		panelDescripcion.add(lblDescripcion4);
 		
-		JLabel lblDescripcion1_1 = new JLabel("sit amen, consect");
+		JLabel lblDescripcion1_1 = new JLabel("amantes de los autos");
 		lblDescripcion1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion1_1.setForeground(new Color(51, 101, 217));
 		lblDescripcion1_1.setFont(new Font("Segoe UI", Font.BOLD, 40));
 		lblDescripcion1_1.setBounds(55, 165, 407, 47);
 		panelDescripcion.add(lblDescripcion1_1);
 		
-		JLabel lblLoewmIpsumDolor = new JLabel("Lorem ipsum");
+		JLabel lblLoewmIpsumDolor = new JLabel("Las mejores marcas");
 		lblLoewmIpsumDolor.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLoewmIpsumDolor.setForeground(new Color(240, 116, 55));
 		lblLoewmIpsumDolor.setFont(new Font("Segoe UI", Font.BOLD, 40));

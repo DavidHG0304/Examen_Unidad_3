@@ -369,7 +369,9 @@ public class Vehiculos extends JFrame {
 		contentPane.add(panel_3, BorderLayout.NORTH);
 		panel_3.setLayout(new GridLayout(0, 5, 0, 0));
 		
-		JButton btnNewButton_6 = new JButton("Inicio");
+		JButton btnNewButton_6 = new JButton("");
+		btnNewButton_6.setBackground(new Color(121, 188, 255));
+		btnNewButton_6.setIcon(new ImageIcon(Vehiculos.class.getResource("/paneles/home.png")));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -383,8 +385,8 @@ public class Vehiculos extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		panel_3.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("Autos",0);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JLabel lblNewLabel = new JLabel("Catalogo",0);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		panel_3.add(lblNewLabel);
 	}
 }
