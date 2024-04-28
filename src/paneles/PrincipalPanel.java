@@ -210,12 +210,12 @@ public class PrincipalPanel extends JFrame {
 					login.setVisible(true);
 					login.setLocationRelativeTo(null);
 				}if(login.getHayCuenta()){
-					//dispose();
-					JOptionPane.showMessageDialog(null, "Ya hay cuenta, mandar a renta","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
-					
+					dispose();
+					Vehiculos vehiculos = new Vehiculos();
+					vehiculos.setVisible(true);
+				}					
 					
 				}
-			}
 		});
 		
 		btnLogin = new JButton("Login");
