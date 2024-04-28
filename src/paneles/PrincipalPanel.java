@@ -14,6 +14,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -26,9 +29,11 @@ public class PrincipalPanel extends JFrame {
 	
 	Login login;
 	Registro registro;
+	private JButton btnLogin;
+	private JButton btnRegistro;
 	
 	Font palabrasNormal = new Font("Arial", Font.BOLD, 20);
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,12 +55,39 @@ public class PrincipalPanel extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
+	public void setBtnLogin(JButton btnLogin) {
+		this.btnLogin = btnLogin;
+	}
+	public JButton getBtnRegistro() {
+		return btnRegistro;
+	}
+	public void setBtnRegistro(JButton btnRegistro) {
+		this.btnRegistro = btnRegistro;
+	}
+
 	public PrincipalPanel() {
+		
 		registro = new Registro(this);
 		login = new Login(this);
+		login.setResizable(false);
+		registro.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
-		panel_principal = new JPanel();
+		panel_principal = new JPanel() {
+			public void paintComponent(Graphics g) {
+
+				Graphics2D g2d = (Graphics2D) g;
+				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(0, 169, 255,255), getWidth(), getHeight(), new Color(83, 169, 255,255), true));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.setColor(getBackground());
+				g2d.drawOval(-120, 440, 350, 350);
+				g2d.drawOval(-60, 460, 350, 350);
+
+			}
+		};
 		panel_principal.setBackground(new Color(83, 169, 255));
 		panel_principal.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -128,15 +160,27 @@ public class PrincipalPanel extends JFrame {
 		panelBotones.add(panel);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JPanel panelL = new JPanel();
+		JPanel panelL = new JPanel() {
+			public void paintComponent(Graphics g) {
+				Graphics2D g2d = (Graphics2D) g;
+				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(40, 112, 255,255), getWidth(), getHeight(), new Color(10, 112, 255,255), true));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.setColor(getBackground());
+				g2d.drawOval(-120, 440, 350, 350);
+				g2d.drawOval(-60, 460, 350, 350);
+
+			}
+		};
+		
+		
 		panelL.setBackground(new Color(255, 255, 255));
 		panel.add(panelL);
 		panelL.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel lblNombreE = new JLabel("*NOMBRETIENDA*");
+		JLabel lblNombreE = new JLabel("DahuRental");
 		lblNombreE.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreE.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNombreE.setForeground(new Color(78, 121, 222));
+		lblNombreE.setForeground(new Color(255,255,255));
 		panelL.add(lblNombreE);
 		
 		JLabel lblEspacio = new JLabel("");
@@ -148,12 +192,11 @@ public class PrincipalPanel extends JFrame {
 		panelR.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JButton btnReserv = new JButton("Catalogo/Renta");
-		btnReserv.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnReserv.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnReserv.setBackground(new Color(255, 255, 255));
 		btnReserv.setForeground(new Color(78, 121, 222));
 		btnReserv.setBorderPainted(false);
 		panelR.add(btnReserv);
-		
 		
 		btnReserv.addActionListener(new ActionListener() {
 			
@@ -161,23 +204,22 @@ public class PrincipalPanel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				if(!registro.getHayCuenta()){
+				if(!login.getHayCuenta()){
 					JOptionPane.showMessageDialog(null, "No hay cuenta, mandar a login, esto puedo cambiar solo es una idea","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
 					dispose();
 					login.setVisible(true);
 					login.setLocationRelativeTo(null);
-				}else {
-					dispose();
+				}if(login.getHayCuenta()){
+					//dispose();
 					JOptionPane.showMessageDialog(null, "Ya hay cuenta, mandar a renta","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
+					
+					
 				}
-		
-				
-				
 			}
 		});
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnLogin.setBackground(new Color(255, 255, 255));
 		btnLogin.setForeground(new Color(78, 121, 222));
 		btnLogin.setBorderPainted(false);
@@ -193,8 +235,8 @@ public class PrincipalPanel extends JFrame {
 			}
 		});
 		
-		JButton btnRegistro = new JButton("Registro");
-		btnRegistro.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnRegistro = new JButton("Registro");
+		btnRegistro.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistro.setBackground(new Color(0, 108, 217));
 		btnRegistro.setForeground(new Color(255, 255, 255));
 		btnRegistro.setBorderPainted(false);
@@ -205,9 +247,18 @@ public class PrincipalPanel extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				dispose();
-				registro.setVisible(true);
-				registro.setLocationRelativeTo(null);
+				if(!login.getHayCuenta()) {
+					dispose();
+					registro.setVisible(true);
+					registro.setLocationRelativeTo(null);
+				}else if(login.getHayCuenta() || !registro.getHayCuenta()){
+					JOptionPane.showMessageDialog(null, "Ha cerrado sesion", "Cerrar Sesion", JOptionPane.INFORMATION_MESSAGE);
+					btnRegistro.setText("Registro");
+		            btnLogin.setText("Login");;
+					btnLogin.setEnabled(true);
+					registro.setHayCuenta(false);
+					login.setHayCuenta(false);
+				}
 			}
 		});
 		
@@ -220,7 +271,7 @@ public class PrincipalPanel extends JFrame {
 		panelDescripcion.setLayout(null);
 		
 		JLabel lblDescripcion1 = new JLabel("Lorem ipsum dolor");
-		lblDescripcion1.setFont(new Font("Arial", Font.BOLD, 40));
+		lblDescripcion1.setFont(new Font("Segoe UI", Font.BOLD, 40));
 		lblDescripcion1.setForeground(new Color(51, 101, 217));
 		lblDescripcion1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion1.setBounds(55, 125, 407, 47);
@@ -229,35 +280,35 @@ public class PrincipalPanel extends JFrame {
 		JLabel lblDescripcion2 = new JLabel(" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed");
 		lblDescripcion2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion2.setForeground(new Color(51, 101, 217));
-		lblDescripcion2.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblDescripcion2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcion2.setBounds(55, 275, 407, 27);
 		panelDescripcion.add(lblDescripcion2);
 		
 		JLabel lblDescripcion3 = new JLabel(" do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 		lblDescripcion3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion3.setForeground(new Color(51, 101, 217));
-		lblDescripcion3.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblDescripcion3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcion3.setBounds(55, 295, 407, 27);
 		panelDescripcion.add(lblDescripcion3);
 		
 		JLabel lblDescripcion4 = new JLabel(" Ut enim ad minim veniam, quis nostrud exercitation ullamco");
 		lblDescripcion4.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion4.setForeground(new Color(51, 101, 217));
-		lblDescripcion4.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblDescripcion4.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcion4.setBounds(55, 317, 407, 27);
 		panelDescripcion.add(lblDescripcion4);
 		
 		JLabel lblDescripcion1_1 = new JLabel("sit amen, consect");
 		lblDescripcion1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion1_1.setForeground(new Color(51, 101, 217));
-		lblDescripcion1_1.setFont(new Font("Arial", Font.BOLD, 40));
+		lblDescripcion1_1.setFont(new Font("Segoe UI", Font.BOLD, 40));
 		lblDescripcion1_1.setBounds(55, 165, 407, 47);
 		panelDescripcion.add(lblDescripcion1_1);
 		
 		JLabel lblLoewmIpsumDolor = new JLabel("Lorem ipsum");
 		lblLoewmIpsumDolor.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLoewmIpsumDolor.setForeground(new Color(240, 116, 55));
-		lblLoewmIpsumDolor.setFont(new Font("Arial", Font.BOLD, 40));
+		lblLoewmIpsumDolor.setFont(new Font("Segoe UI", Font.BOLD, 40));
 		lblLoewmIpsumDolor.setBounds(55, 217, 407, 47);
 		panelDescripcion.add(lblLoewmIpsumDolor);
 		
@@ -277,7 +328,18 @@ public class PrincipalPanel extends JFrame {
 		
 		panelImagen.add(lblAux);
 		
-		JPanel panel_inferior = new JPanel();
+		JPanel panel_inferior = new JPanel(){
+			public void paintComponent(Graphics g) {
+
+				Graphics2D g2d = (Graphics2D) g;
+				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(40, 112, 255,255), getWidth(), getHeight(), new Color(10, 112, 255,255), true));
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.setColor(getBackground());
+				g2d.drawOval(-120, 440, 350, 350);
+				g2d.drawOval(-60, 460, 350, 350);
+
+			}
+		};
 		panel_inferior.setBackground(new Color(0, 108, 217));
 		panel_principal.add(panel_inferior, BorderLayout.SOUTH);
 		panel_inferior.setLayout(new GridLayout(2, 4, 10, 0));
@@ -286,29 +348,29 @@ public class PrincipalPanel extends JFrame {
 		lblTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTxt.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblTxt.setForeground(new Color(255, 255, 255));
-		lblTxt.setFont(new Font("Arial", Font.BOLD, 30));
+		lblTxt.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		panel_inferior.add(lblTxt);
 		
 		JLabel lblTxt2 = new JLabel("90+");
-		lblTxt2.setFont(new Font("Arial", Font.BOLD, 30));
+		lblTxt2.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTxt2.setForeground(new Color(255, 255, 255));
 		lblTxt2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt2);
 		
 		JLabel lblTxt3 = new JLabel("200+");
-		lblTxt3.setFont(new Font("Arial", Font.BOLD, 30));
+		lblTxt3.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTxt3.setForeground(new Color(255, 255, 255));
 		lblTxt3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt3);
 		
 		JLabel lblTxt4 = new JLabel("5000+");
-		lblTxt4.setFont(new Font("Arial", Font.BOLD, 30));
+		lblTxt4.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTxt4.setForeground(new Color(255, 255, 255));
 		lblTxt4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt4);
 		
 		JLabel lblTxt5 = new JLabel("Autos");
-		lblTxt5.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt5.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblTxt5.setForeground(new Color(255, 255, 255));
 		
 		
@@ -316,21 +378,22 @@ public class PrincipalPanel extends JFrame {
 		panel_inferior.add(lblTxt5);
 		
 		JLabel lblTxt6 = new JLabel("Expertos en venta");
-		lblTxt6.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt6.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblTxt6.setForeground(new Color(255, 255, 255));
 		lblTxt6.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt6);
 		
 		JLabel lblTxt7 = new JLabel("Localizaciones");
-		lblTxt7.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt7.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblTxt7.setForeground(new Color(255, 255, 255));
 		lblTxt7.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt7);
 		
 		JLabel lblTxt8 = new JLabel("Compradores");
-		lblTxt8.setFont(new Font("Arial", Font.BOLD, 14));
+		lblTxt8.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblTxt8.setForeground(new Color(255, 255, 255));
 		lblTxt8.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt8);
 	}
+
 }
