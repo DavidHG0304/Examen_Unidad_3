@@ -161,15 +161,19 @@ public class Registro extends JFrame {
 		textField_1.setBounds(42, 372, 366, 36);
 		panel_2.add(textField_1);
 		
-		JButton btnNewButton = new JButton("Iniciar sesión");
+		JButton btnNewButton = new JButton("Volver");
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-				login.setVisible(true);
-				login.setLocationRelativeTo(null);
-				login.setResizable(false);
+//				login.setVisible(true);
+//				login.setLocationRelativeTo(null);
+//				login.setResizable(false);
+				
+				panelPrincipal.setVisible(true);
+				panelPrincipal.setLocationRelativeTo(null);
+				panelPrincipal.setResizable(false);
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
@@ -205,14 +209,14 @@ public class Registro extends JFrame {
 		            if (auxVerContra.isEmpty()) {
 		                textField_2.setBorder(new LineBorder(Color.red, 2));
 		            }
-		            JOptionPane.showMessageDialog(null, "Faltan campos por rellenar", "Rellene Campos", JOptionPane.WARNING_MESSAGE);
+//		            JOptionPane.showMessageDialog(null, "Faltan campos por rellenar", "Rellene Campos", JOptionPane.WARNING_MESSAGE);
 		        } else if (!auxContra.equals(auxVerContra)) {
 		            textField_1.setBorder(new LineBorder(Color.red, 2));
 		            textField_2.setBorder(new LineBorder(Color.red, 2));
 		            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
 		        } else {
-		            JOptionPane.showMessageDialog(null, "Cuenta creada con éxito", "Cuenta creada", JOptionPane.INFORMATION_MESSAGE);
-		            JOptionPane.showMessageDialog(null, "Una vez crea la cuenta puede mandarlo al panel directamente de los vehiculos para consultarlos", "IDEA", JOptionPane.INFORMATION_MESSAGE);
+//		            JOptionPane.showMessageDialog(null, "Cuenta creada con éxito", "Cuenta creada", JOptionPane.INFORMATION_MESSAGE);
+//		            JOptionPane.showMessageDialog(null, "Una vez crea la cuenta puede mandarlo al panel directamente de los vehiculos para consultarlos", "IDEA", JOptionPane.INFORMATION_MESSAGE);
 		            hayCuenta = true;
 		            dispose();
 		            panelPrincipal.setVisible(true);
@@ -251,11 +255,11 @@ public class Registro extends JFrame {
 		textField_3.setBounds(42, 185, 366, 36);
 		panel_2.add(textField_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Ya tiene una cuenta?");
-		lblNewLabel_4.setForeground(new Color(56, 120, 237));
-		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		lblNewLabel_4.setBounds(44, 545, 137, 14);
-		panel_2.add(lblNewLabel_4);
+//		JLabel lblNewLabel_4 = new JLabel("Ya tiene una cuenta?");
+//		lblNewLabel_4.setForeground(new Color(56, 120, 237));
+//		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 14));
+//		lblNewLabel_4.setBounds(44, 545, 137, 14);
+//		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Crea una cuenta para empezar");
 		lblNewLabel_1_1.setForeground(new Color(0,0,0,90));

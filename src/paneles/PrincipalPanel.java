@@ -205,7 +205,7 @@ public class PrincipalPanel extends JFrame {
 				// TODO Auto-generated method stub
 				
 				if(!login.getHayCuenta()){
-					JOptionPane.showMessageDialog(null, "No hay cuenta, mandar a login, esto puedo cambiar solo es una idea","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
+//					JOptionPane.showMessageDialog(null, "No hay cuenta, mandar a login, esto puedo cambiar solo es una idea","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
 					dispose();
 					login.setVisible(true);
 					login.setLocationRelativeTo(null);
