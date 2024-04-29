@@ -13,6 +13,12 @@ import javax.swing.JOptionPane;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -21,6 +27,7 @@ import java.awt.Graphics2D;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import com.toedter.calendar.JDateChooser;
 
 public class PrincipalPanel extends JFrame {
 
@@ -32,6 +39,11 @@ public class PrincipalPanel extends JFrame {
 	private Vehiculos vehiculos;
 	private JButton btnLogin;
 	private JButton btnRegistro;
+	
+	private int diaSeleccionado1;
+	private int diaSeleccionado2;
+	boolean fechaInicialSeleccionada = false;
+	boolean fechaFinalSeleccionada = false;
 	
 	
 	Font palabrasNormal = new Font("Arial", Font.BOLD, 20);
@@ -313,6 +325,67 @@ public class PrincipalPanel extends JFrame {
 		lblLoewmIpsumDolor.setBounds(55, 217, 407, 47);
 		panelDescripcion.add(lblLoewmIpsumDolor);
 		
+		//Calendario Prueba
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(50, 45, 70, 20);
+		panelDescripcion.add(dateChooser);
+		
+		JDateChooser dateChooser1 = new JDateChooser();
+		dateChooser1.setBounds(200, 45, 70, 20);
+		panelDescripcion.add(dateChooser1);
+		
+		
+		fechaInicialSeleccionada = false;
+		fechaFinalSeleccionada = false;
+		
+		dateChooser.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+		    @Override
+		    public void propertyChange(PropertyChangeEvent evt) {
+		        if ("date".equals(evt.getPropertyName())) {
+		            Date fechaSeleccionada = dateChooser.getDate();
+		            if (fechaSeleccionada != null) {
+		                Calendar calendar = Calendar.getInstance();
+		                calendar.setTime(fechaSeleccionada);
+		                diaSeleccionado1 = calendar.get(Calendar.DAY_OF_MONTH);
+		                System.out.println("Fecha inicio: " + diaSeleccionado1);
+		                System.out.println(fechaSeleccionada != null && dateChooser1.getDate() != null && diaSeleccionado2 < diaSeleccionado1);
+		                // Verificar si ambas fechas son válidas
+		                if (fechaSeleccionada != null && dateChooser1.getDate() != null && diaSeleccionado2 < diaSeleccionado1 ) {
+		                    JOptionPane.showMessageDialog(null, "Ha ingresado una fecha inválida", "Aviso", JOptionPane.WARNING_MESSAGE);
+		                    dateChooser.setDate(null);
+		                }
+		            }
+		        }
+		    }
+		});
+		
+		dateChooser1.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+		    @Override
+		    public void propertyChange(PropertyChangeEvent evt) {
+		        if ("date".equals(evt.getPropertyName())) {
+		            Date fechaSeleccionada = dateChooser1.getDate();
+		            if (fechaSeleccionada != null) {
+		                Calendar calendar = Calendar.getInstance();
+		                calendar.setTime(fechaSeleccionada);
+		                diaSeleccionado2 = calendar.get(Calendar.DAY_OF_MONTH);
+		                System.out.println("Fecha fin: " + diaSeleccionado2);
+		                System.out.println(fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 );
+		                // Verificar si ambas fechas son válidas
+		                if (fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 ) {
+		                    JOptionPane.showMessageDialog(null, "Ha ingresado una fecha inválida", "Aviso", JOptionPane.WARNING_MESSAGE);
+		                    dateChooser1.setDate(null);
+		                }
+		            }
+		        }
+		    }
+		});
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		
 		JPanel panelImagen = new JPanel();
 		panelCentral.add(panelImagen);
 		panelImagen.setLayout(null);
@@ -396,5 +469,4 @@ public class PrincipalPanel extends JFrame {
 		lblTxt8.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt8);
 	}
-
 }
