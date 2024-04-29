@@ -31,6 +31,9 @@ public class Renta extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_6;
 	private JTextField textField_5;
+	
+	private static PrincipalPanel panelPrincipal;
+	private static Vehiculos vehiculos;
 
 	/**
 	 * Launch the application.
@@ -39,8 +42,9 @@ public class Renta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Renta frame = new Renta();
+					Renta frame = new Renta(panelPrincipal);
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,7 +55,9 @@ public class Renta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Renta() {
+	public Renta(PrincipalPanel panelPrincipal) {
+		this.panelPrincipal = panelPrincipal;
+		this.vehiculos = new Vehiculos(panelPrincipal, this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
@@ -326,5 +332,19 @@ public class Renta extends JFrame {
 		panel_4.setBackground(new Color(255, 255, 255));
 		panel_4.setBounds(0, 0, 933, 36);
 		contentPane.add(panel_4);
+		
+		JButton btnNewButton_6 = new JButton("");
+		btnNewButton_6.setBounds(25, 0, 160, 33);
+		btnNewButton_6.setBackground(new Color(121, 188, 255));
+		btnNewButton_6.setIcon(new ImageIcon(Vehiculos.class.getResource("/paneles/back.png")));
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				vehiculos.setVisible(true);
+				vehiculos.setLocationRelativeTo(null);
+			}
+		});
+		panel_4.setLayout(null);
+		panel_4.add(btnNewButton_6);
 	}
 }

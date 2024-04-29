@@ -26,7 +26,8 @@ public class Vehiculos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public static PrincipalPanel principal;
+	public static PrincipalPanel panelPrincipal;
+	private static Renta renta;
 
 	/**
 	 * Launch the application.
@@ -35,7 +36,7 @@ public class Vehiculos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculos frame = new Vehiculos(principal);
+					Vehiculos frame = new Vehiculos(panelPrincipal, renta);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
@@ -50,8 +51,9 @@ public class Vehiculos extends JFrame {
 	 * Create the frame.
 	 * @param principal 
 	 */
-	public Vehiculos(PrincipalPanel principal) {
-		this.principal = principal;
+	public Vehiculos(PrincipalPanel panelPrincipal, Renta renta) {
+		this.panelPrincipal = panelPrincipal;
+		this.renta = renta;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
@@ -83,6 +85,8 @@ public class Vehiculos extends JFrame {
 		arrayCarros.add(new Carros("Suv", "BMW", "Huracan", 2024, "/paneles/xm.png", "Automatico", 500));        
 		arrayCarros.add(new Carros("Suv", "Chevrolet", "Huracan", 2024, "/paneles/blazer.png", "Automatico", 300));
 		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Huracan", 2024, "/paneles/wrangler.png", "Automatico", 350));
+		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Huracan", 2024, "/paneles/wrangler.png", "Automatico", 350));
+		
 		
         panel_5.setLayout(new GridLayout(0, 3, 0, 0));
         contentPane.add(panel_5, BorderLayout.CENTER);
@@ -91,6 +95,11 @@ public class Vehiculos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() instanceof JButton) {
+                	dispose();
+                	renta.setVisible(true);
+                	renta.setLocationRelativeTo(null);
+    				renta.setResizable(false);
+                	
                     JOptionPane.showMessageDialog(null, "Mandar al panel de renta");
                 }
             }
@@ -113,8 +122,8 @@ public class Vehiculos extends JFrame {
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				principal.setVisible(true);
-				principal.setLocationRelativeTo(null);
+				panelPrincipal.setVisible(true);
+				panelPrincipal.setLocationRelativeTo(null);
 			}
 		});
 		panel_3.add(btnNewButton_6);

@@ -39,6 +39,7 @@ public class PrincipalPanel extends JFrame {
 	private Vehiculos vehiculos;
 	private JButton btnLogin;
 	private JButton btnRegistro;
+	private Renta renta;
 	
 	private int diaSeleccionado1;
 	private int diaSeleccionado2;
@@ -83,11 +84,13 @@ public class PrincipalPanel extends JFrame {
 	}
 
 	public PrincipalPanel() {
-		this.vehiculos = new Vehiculos(this);
 		this.login = new Login(this);
 		this.registro = new Registro(this, login);
+		this.renta = new Renta(this);
+		this.vehiculos = new Vehiculos(this, renta);
 		login.setResizable(false);
 		registro.setResizable(false);
+		renta.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		panel_principal = new JPanel() {
@@ -225,6 +228,7 @@ public class PrincipalPanel extends JFrame {
 					login.setLocationRelativeTo(null);
 				}if(login.getHayCuenta()){
 					dispose();
+					vehiculos.setLocationRelativeTo(null);
 					vehiculos.setVisible(true);
 				}					
 					
