@@ -27,10 +27,12 @@ public class PrincipalPanel extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_principal;
 	
-	Login login;
-	Registro registro;
+	private Login login;
+	private Registro registro;
+	private Vehiculos vehiculos;
 	private JButton btnLogin;
 	private JButton btnRegistro;
+	
 	
 	Font palabrasNormal = new Font("Arial", Font.BOLD, 20);
 	
@@ -69,16 +71,16 @@ public class PrincipalPanel extends JFrame {
 	}
 
 	public PrincipalPanel() {
-		
-		registro = new Registro(this);
-		login = new Login(this);
+		this.vehiculos = new Vehiculos(this);
+		this.login = new Login(this);
+		this.registro = new Registro(this, login);
 		login.setResizable(false);
 		registro.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		panel_principal = new JPanel() {
+			
 			public void paintComponent(Graphics g) {
-
 				Graphics2D g2d = (Graphics2D) g;
 				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(0, 169, 255,255), getWidth(), getHeight(), new Color(83, 169, 255,255), true));
 				g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -211,7 +213,6 @@ public class PrincipalPanel extends JFrame {
 					login.setLocationRelativeTo(null);
 				}if(login.getHayCuenta()){
 					dispose();
-					Vehiculos vehiculos = new Vehiculos();
 					vehiculos.setVisible(true);
 				}					
 					

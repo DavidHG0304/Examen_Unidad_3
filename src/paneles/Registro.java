@@ -30,7 +30,7 @@ public class Registro extends JFrame {
 	private JPasswordField textField_1;
 	private JPasswordField textField_2;
 	private JTextField textField_3;
-	private Login login;
+	private static Login login;
 	
 	
 	private Boolean hayCuenta = false;
@@ -49,7 +49,8 @@ public class Registro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registro frame = new Registro(panelPrincipal);
+					
+					Registro frame = new Registro(panelPrincipal, login);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
@@ -79,8 +80,8 @@ public class Registro extends JFrame {
 	}
 
 	
-	public Registro(PrincipalPanel panelPrincipal) {
-		login = new Login(panelPrincipal);
+	public Registro(PrincipalPanel panelPrincipal, Login login) {
+		this.login = login;
 		this.panelPrincipal = panelPrincipal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
@@ -150,30 +151,33 @@ public class Registro extends JFrame {
 		panel_2.add(lblNewLabel_2_1);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		textField.setBorder(new LineBorder(Color.GRAY,1,true));
 		textField.setBounds(42, 278, 366, 36);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JPasswordField();
+		textField_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		textField_1.setBorder(new LineBorder(Color.GRAY,1,true));
 		textField_1.setColumns(10);
 		textField_1.setBounds(42, 372, 366, 36);
 		panel_2.add(textField_1);
 		
-		JButton btnNewButton = new JButton("Volver");
+		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-//				login.setVisible(true);
-//				login.setLocationRelativeTo(null);
-//				login.setResizable(false);
+				login.setVisible(true);
+				login.setLocationRelativeTo(null);
+				login.setResizable(false);
 				
-				panelPrincipal.setVisible(true);
-				panelPrincipal.setLocationRelativeTo(null);
-				panelPrincipal.setResizable(false);
+				
+//				panelPrincipal.setVisible(true);
+//				panelPrincipal.setLocationRelativeTo(null);
+//				panelPrincipal.setResizable(false);
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
@@ -215,7 +219,7 @@ public class Registro extends JFrame {
 		            textField_2.setBorder(new LineBorder(Color.red, 2));
 		            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
 		        } else {
-//		            JOptionPane.showMessageDialog(null, "Cuenta creada con éxito", "Cuenta creada", JOptionPane.INFORMATION_MESSAGE);
+		            JOptionPane.showMessageDialog(null, "Cuenta creada con éxito", "Cuenta creada", JOptionPane.INFORMATION_MESSAGE);
 //		            JOptionPane.showMessageDialog(null, "Una vez crea la cuenta puede mandarlo al panel directamente de los vehiculos para consultarlos", "IDEA", JOptionPane.INFORMATION_MESSAGE);
 		            hayCuenta = true;
 		            dispose();
@@ -225,13 +229,13 @@ public class Registro extends JFrame {
 		    }
 		});
 		
-		
 		btnRegistrarse.setBackground(new Color(5, 117, 230));
 		btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistrarse.setBounds(225, 561, 124, 36);
 		panel_2.add(btnRegistrarse);
 		
 		textField_2 = new JPasswordField();
+		textField_2.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		textField_2.setBorder(new LineBorder(Color.GRAY,1,true));
 		textField_2.setColumns(10);
 		textField_2.setBounds(42, 466, 366, 36);
@@ -250,16 +254,17 @@ public class Registro extends JFrame {
 		panel_2.add(lblNewLabel_2_2);
 		
 		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		textField_3.setBorder(new LineBorder(Color.GRAY,1,true));
 		textField_3.setColumns(10);
 		textField_3.setBounds(42, 185, 366, 36);
 		panel_2.add(textField_3);
 		
-//		JLabel lblNewLabel_4 = new JLabel("Ya tiene una cuenta?");
-//		lblNewLabel_4.setForeground(new Color(56, 120, 237));
-//		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 14));
-//		lblNewLabel_4.setBounds(44, 545, 137, 14);
-//		panel_2.add(lblNewLabel_4);
+		JLabel lblNewLabel_4 = new JLabel("Ya tiene una cuenta?");
+		lblNewLabel_4.setForeground(new Color(56, 120, 237));
+		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblNewLabel_4.setBounds(44, 545, 137, 14);
+		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Crea una cuenta para empezar");
 		lblNewLabel_1_1.setForeground(new Color(0,0,0,90));

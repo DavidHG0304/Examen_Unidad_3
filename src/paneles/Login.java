@@ -12,8 +12,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.GradientPaint;
@@ -21,9 +19,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -34,7 +33,10 @@ public class Login extends JFrame {
 	private JPasswordField textField_1;
 	
 	private static PrincipalPanel panelPrincipal;
+	private static Registro registro;
 	String auxUsuario;
+	
+	
 	private Boolean hayCuenta = false;
 	String auxContra;
 
@@ -71,6 +73,7 @@ public class Login extends JFrame {
 	}
 
 	public Login(PrincipalPanel panelPrincipal) {
+		this.registro = new Registro(panelPrincipal, this);
 		this.panelPrincipal = panelPrincipal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
@@ -95,9 +98,12 @@ public class Login extends JFrame {
 				g2d.drawOval(-60,460, 350, 350);
 			}
 		};
+		
+		
 		panel_1.setBackground(new Color(0, 128, 255));
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
 		
 		JLabel lblNewLabel = new JLabel("Preferido por los Amantes de los Autos");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -138,16 +144,20 @@ public class Login extends JFrame {
 		panel_2.add(lblNewLabel_2_1);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		textField.setBorder(new LineBorder(Color.GRAY,1,true));
 		textField.setBounds(42, 278, 366, 36);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
+				
 		textField_1 = new JPasswordField();
-		textField.setBorder(new LineBorder(Color.GRAY,1,true));
+		textField_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		textField_1.setBorder(new LineBorder(Color.GRAY,1,true));
 		textField_1.setColumns(10);
 		textField_1.setBounds(42, 372, 366, 36);
 		panel_2.add(textField_1);
+		
 		
 		JButton btnNewButton = new JButton("Iniciar sesión");
 		btnNewButton.setForeground(new Color(255, 255, 255));
@@ -159,8 +169,8 @@ public class Login extends JFrame {
 				auxUsuario = new String(textField.getText());
 				auxContra = new String(textField_1.getPassword());
 				
-				if (auxUsuario.isEmpty() || auxContra.isEmpty()) {
-					if(auxContra.isEmpty() && auxUsuario.isEmpty()) {
+				if (auxUsuario.isEmpty() || auxContra.isEmpty() || auxUsuario.equals("Ingrese su usuario")) {
+					if(auxContra.isEmpty() &&  auxUsuario.isEmpty()) {
 						textField.setBorder(new LineBorder(Color.red, 2));
 						textField_1.setBorder(new LineBorder(Color.red, 2));
 //						JOptionPane.showMessageDialog(null, "Faltan campos por rellenar", "Rellene Campos", JOptionPane.WARNING_MESSAGE);
@@ -186,6 +196,7 @@ public class Login extends JFrame {
 		        }
 		    }
 		});
+		 
 		
 		btnNewButton.setBackground(new Color(5, 117, 230));
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -197,7 +208,6 @@ public class Login extends JFrame {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Registro registro = new Registro(panelPrincipal);
 				registro.setVisible(true);
 				registro.setLocationRelativeTo(null);
 				registro.setResizable(false);
@@ -220,7 +230,9 @@ public class Login extends JFrame {
 		lblNewLabel_1_1.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lblNewLabel_1_1.setBounds(44, 119, 220, 22);
 		panel_2.add(lblNewLabel_1_1);
+		
+		textField.requestFocusInWindow();
+		
+		
 	}
-
-	
 }

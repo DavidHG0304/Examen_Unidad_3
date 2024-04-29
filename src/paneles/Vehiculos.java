@@ -23,6 +23,7 @@ public class Vehiculos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public static PrincipalPanel principal;
 
 	/**
 	 * Launch the application.
@@ -31,7 +32,7 @@ public class Vehiculos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculos frame = new Vehiculos();
+					Vehiculos frame = new Vehiculos(principal);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
@@ -44,8 +45,10 @@ public class Vehiculos extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param principal 
 	 */
-	public Vehiculos() {
+	public Vehiculos(PrincipalPanel principal) {
+		this.principal = principal;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
@@ -375,7 +378,6 @@ public class Vehiculos extends JFrame {
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				PrincipalPanel principal = new PrincipalPanel();
 				principal.setVisible(true);
 				principal.setLocationRelativeTo(null);
 			}
