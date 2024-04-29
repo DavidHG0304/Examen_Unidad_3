@@ -34,6 +34,15 @@ public class Renta extends JFrame {
 	
 	private static PrincipalPanel panelPrincipal;
 	private static Vehiculos vehiculos;
+	
+	private JLabel lblImgCarros;
+	private JLabel lblMarca;
+	private JLabel lblNombre;
+	private JLabel lblModelo;
+	private JLabel lblAnio;
+	private JLabel lblTransmision;
+	private JLabel lblCosto;
+	
 
 	/**
 	 * Launch the application.
@@ -51,6 +60,15 @@ public class Renta extends JFrame {
 			}
 		});
 	}
+	
+	public JLabel getLblImgCarros() {
+		return lblImgCarros;
+	}
+	public void setLblImgCarros(JLabel lblImgCarros) {
+		this.lblImgCarros = lblImgCarros;
+	}
+
+
 
 	/**
 	 * Create the frame.
@@ -112,30 +130,39 @@ public class Renta extends JFrame {
 		lblAutoARentar.setBounds(0, 0, 524, 30);
 		panel_1.add(lblAutoARentar);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Renta.class.getResource("/paneles/blazer.png")));
-		lblNewLabel_2.setBounds(10, 41, 200, 130);
-		panel_1.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("SUV");
-		lblNewLabel_3_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		lblNewLabel_3_1.setBounds(10, 215, 81, 14);
-		panel_1.add(lblNewLabel_3_1);
+		//Inicializar los labels vacios para despues cambiarlos conforme al carro que selecciona con el metodo para remplazarlos
 		
-		JLabel lblNewLabel_3_2 = new JLabel("Chevrolet");
-		lblNewLabel_3_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3_2.setBounds(10, 240, 81, 14);
-		panel_1.add(lblNewLabel_3_2);
+		lblImgCarros = new JLabel("");
+		lblMarca = new JLabel("");
+		lblNombre = new JLabel("");
+		lblModelo = new JLabel("");
+		lblAnio = new JLabel("");
+		lblTransmision = new JLabel("");
+		lblCosto = new JLabel("");
 		
-		JLabel lblNewLabel_3_3 = new JLabel("Blazer");
-		lblNewLabel_3_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3_3.setBounds(97, 240, 81, 14);
-		panel_1.add(lblNewLabel_3_3);
+//		lblImgCarros.setIcon(new ImageIcon(Renta.class.getResource("/paneles/blazer.png")));
+		lblImgCarros.setBounds(10, 41, 200, 130);
+		panel_1.add(lblImgCarros);
 		
-		JLabel lblNewLabel_3_3_1 = new JLabel("2024");
-		lblNewLabel_3_3_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3_3_1.setBounds(10, 275, 116, 14);
-		panel_1.add(lblNewLabel_3_3_1);
+		lblNombre = new JLabel("");
+		lblNombre.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNombre.setBounds(10, 215, 81, 14);
+		panel_1.add(lblNombre);
+		
+		lblMarca.setFont(new Font("", Font.PLAIN, 13));
+		lblMarca.setBounds(10, 240, 81, 14);
+		panel_1.add(lblMarca);
+		
+		lblModelo = new JLabel("");
+		lblModelo .setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblModelo .setBounds(97, 240, 81, 14);
+		panel_1.add(lblModelo );
+		
+		lblAnio = new JLabel("");
+		lblAnio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblAnio.setBounds(10, 275, 116, 14);
+		panel_1.add(lblAnio);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Blazer", "Wrangler", "Huracan STO", "GTR R35", "Camaro RS", "XM"}));
@@ -172,10 +199,10 @@ public class Renta extends JFrame {
 		textField_5.setBounds(281, 66, 155, 20);
 		panel_1.add(textField_5);
 		
-		JLabel lblNewLabel_5 = new JLabel("Automatico");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_5.setBounds(97, 216, 81, 14);
-		panel_1.add(lblNewLabel_5);
+		lblTransmision = new JLabel("");
+		lblTransmision.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTransmision.setBounds(97, 216, 81, 14);
+		panel_1.add(lblTransmision);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -347,4 +374,15 @@ public class Renta extends JFrame {
 		panel_4.setLayout(null);
 		panel_4.add(btnNewButton_6);
 	}
+	
+	public void cambiarElementos(String rutaImagen, String nombre, String marca, String modelo, String anio, String transmision, String costo) {
+	    lblImgCarros.setIcon(new ImageIcon(Renta.class.getResource(rutaImagen)));
+	    lblNombre.setText(nombre);
+	    lblMarca.setText(marca);
+		lblModelo.setText(modelo);
+		lblAnio.setText(anio);
+		lblTransmision.setText(transmision);
+		lblCosto.setText(costo);
+	}
+	
 }

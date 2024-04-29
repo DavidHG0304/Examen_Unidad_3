@@ -28,6 +28,7 @@ public class Vehiculos extends JFrame {
 	private JPanel contentPane;
 	public static PrincipalPanel panelPrincipal;
 	private static Renta renta;
+	private ArrayList<Carros> arrayCarros;
 
 	/**
 	 * Launch the application.
@@ -77,8 +78,9 @@ public class Vehiculos extends JFrame {
 		
 //		-----------------------------------------------------------------------------------------------------------------------
 //		Paneles vehiculos y accion para los botones de Renta
+//		Cambia los labels que se imprimen en el panel de renta al seleccionar algun carro
 //		Inicializar Objetos Carritos dentro del arraylist
-		ArrayList<Carros> arrayCarros = new ArrayList<Carros>();
+		arrayCarros = new ArrayList<Carros>();
 		arrayCarros.add(new Carros("Deportivo", "Chevrolet", "Camaro", 2027, "/paneles/camaroncito.png", "Automatico", 85));		
 		arrayCarros.add(new Carros("Deportivo", "Nissan", "GTR", 2024, "/paneles/gtr.png", "Automatico", 1000));
 		arrayCarros.add(new Carros("Deportivo", "Lamborghini", "Huracan STO", 2021, "/paneles/huracan.png", "Automatico", 3000));
@@ -96,11 +98,27 @@ public class Vehiculos extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() instanceof JButton) {
                 	dispose();
+                	JButton btnRentar = (JButton) e.getSource(); 
+					for (Carros carro : arrayCarros) {
+						if (carro.getBtnRentar() == btnRentar) {
+							String foto = carro.getFoto();
+							String marca = carro.getMarca();
+							String nombre = carro.getNombre();
+							String modelo = carro.getModelo();
+							String transmision = carro.getTransmision();
+							
+							int auxAnio = carro.getAnio();
+							String anio = ""+auxAnio;
+							double auxCosto = carro.getCosto();
+							String costo = ""+auxCosto;
+
+							renta.cambiarElementos(foto, nombre, marca, modelo, anio, transmision, costo);
+                            break; 
+                        }
+                    }
                 	renta.setVisible(true);
                 	renta.setLocationRelativeTo(null);
     				renta.setResizable(false);
-                	
-                    JOptionPane.showMessageDialog(null, "Mandar al panel de renta");
                 }
             }
         };
@@ -135,4 +153,5 @@ public class Vehiculos extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		panel_3.add(lblNewLabel);
 	}
+	
 }

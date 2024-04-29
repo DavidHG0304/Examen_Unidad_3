@@ -23,6 +23,8 @@ public class Carros {
 	
 	private JButton btnRentar;
 	
+	
+	
 	public Carros(String nombre, String marca, String modelo, int anio, String foto, String transmision, double costo) {
         this.nombre = nombre;
         this.marca = marca;
@@ -31,6 +33,10 @@ public class Carros {
         this.foto = foto;
         this.transmision = transmision;
         this.costo = costo;
+    }
+	
+	public Carros() {
+      
     }
 
 	public String getNombre() {

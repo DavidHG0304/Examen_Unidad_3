@@ -221,8 +221,16 @@ public class PrincipalPanel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
+				//Documente lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
+				//---------------------
+				dispose();
+				vehiculos.setVisible(true);
+				vehiculos.setLocationRelativeTo(null);
+				//---------------------
+				
+				
+				/*
 				if(!login.getHayCuenta()){
-//					JOptionPane.showMessageDialog(null, "No hay cuenta, mandar a login, esto puedo cambiar solo es una idea","Cree una Cuenta", JOptionPane.WARNING_MESSAGE);
 					dispose();
 					login.setVisible(true);
 					login.setLocationRelativeTo(null);
@@ -230,7 +238,8 @@ public class PrincipalPanel extends JFrame {
 					dispose();
 					vehiculos.setLocationRelativeTo(null);
 					vehiculos.setVisible(true);
-				}					
+				}
+				*/					
 					
 				}
 		});
