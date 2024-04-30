@@ -52,6 +52,7 @@ public class Renta extends JFrame {
 	private JLabel lblCosto;
 	private JLabel lblPrecioPorDias;
 	private JLabel lblCostoPorDias;
+	private JLabel lblTotalAPagar;
 	
 	private JDateChooser dateChooser;
 	private JDateChooser dateChooser1;
@@ -146,7 +147,7 @@ public class Renta extends JFrame {
  		lblPrecioPorDias.setBounds(10, 172, 154, 14);
  		resumenPrecio.add(lblPrecioPorDias);
  		
-		JLabel lblTotalAPagar = new JLabel("  Total a pagar:          $");
+		lblTotalAPagar = new JLabel("  Total a pagar:          $");
 		lblTotalAPagar.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblTotalAPagar.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		lblTotalAPagar.setBounds(0, 270, 260, 30);
@@ -218,6 +219,7 @@ public class Renta extends JFrame {
         for (Carros carro : arrayCarros) {
         	comboBoxItems.addItem(carro.getModelo());
 		}
+        
 		comboBoxItems.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -425,7 +427,7 @@ public class Renta extends JFrame {
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblPrecioPorDia, lblTotalAPagar, lblOpciones);
+				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
 				vehiculos.setVisible(true);
 				vehiculos.setLocationRelativeTo(null);
 			}
@@ -538,7 +540,7 @@ public class Renta extends JFrame {
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblPrecioPorDia, lblTotalAPagar, lblOpciones);
+				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
 			}
 		});
 		btnLimpiar.setForeground(Color.WHITE);
@@ -555,7 +557,7 @@ public class Renta extends JFrame {
     }
 	
 	public void cambiarElementos(String rutaImagen, String nombre, String marca, String modelo, String anio, String transmision, String costo) {
-		limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblPrecioPorDias, lblAnio, lblCostoPorDias);
+		limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
 		lblImgCarros.setIcon(new ImageIcon(Renta.class.getResource(rutaImagen)));
 	    lblNombre.setText(nombre);
 	    lblMarca.setText(marca);
@@ -566,7 +568,7 @@ public class Renta extends JFrame {
 	}
 	
 	public void limpiarDatos(JTextField textField_5, JDateChooser dateChooser, JDateChooser dateChooser1, JTextField textField, JTextField textField_1,
-			JTextField textField_2, JTextField textField_3, JLabel lblPrecioPorDias, JLabel lblTotalAPagar, JLabel lblCostoPorDias) {
+			JTextField textField_2, JTextField textField_3, JLabel costo, JLabel lblPrecioPorDias, JLabel lblTotalAPagar, JLabel lblCostoPorDias) {
 		textField_5.setText("");
 		dateChooser.setDate(null);
 		dateChooser1.setDate(null);
@@ -574,6 +576,7 @@ public class Renta extends JFrame {
 		textField_1.setText("");
 		textField_2.setText("");
 		textField_3.setText("");
+		lblCosto.setText("");
 		lblPrecioPorDias.setText("Precio por 0 :");
 		lblTotalAPagar.setText("  Total a pagar:          $");
 		lblCostoPorDias.setText("$ ");
@@ -586,6 +589,7 @@ public class Renta extends JFrame {
 		}
 		comboBoxItems.revalidate();
 		comboBoxItems.repaint();
+		
 		
 	}
 }
