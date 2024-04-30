@@ -22,6 +22,8 @@ public class Carros {
 	private double costo;
 	
 	private JButton btnRentar;
+	private JButton btnElim;
+	private JButton btnEdit;
 	
 	
 	
@@ -103,6 +105,22 @@ public class Carros {
 		this.btnRentar = btnRentar;
 	}
 
+	public JButton getBtnElim() {
+		return btnElim;
+	}
+
+	public void setBtnElim(JButton btnElim) {
+		this.btnElim = btnElim;
+	}
+
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public void setBtnEdit(JButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
 	public JPanel getPanelCatalog() {
 		
 		JPanel panelC = new JPanel();
@@ -151,6 +169,18 @@ public class Carros {
         btnRentar.setForeground(Color.white);
         btnRentar.setBounds(198, 155, 89, 23);
         panelC.add(btnRentar);
+        
+        btnElim = new JButton("Eliminar");
+        btnElim.setBackground(new Color(0, 128, 255));
+        btnElim.setForeground(Color.white);
+        btnElim.setBounds(274, 10, 16, 16);
+        panelC.add(btnElim);
+        
+        btnEdit = new JButton("Editar");
+        btnEdit.setBackground(new Color(0, 128, 255));
+        btnEdit.setForeground(Color.white);
+        btnEdit.setBounds(244, 10, 16, 16);
+        panelC.add(btnEdit);
         
 		return panelC;
 	}

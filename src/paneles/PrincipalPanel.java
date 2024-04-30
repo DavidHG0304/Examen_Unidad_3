@@ -41,6 +41,7 @@ public class PrincipalPanel extends JFrame {
 	private JButton btnLogin;
 	private JButton btnRegistro;
 	private Renta renta;
+	private AniadirCarro panelAniadir;
 	
 	private int diaSeleccionado1;
 	private int diaSeleccionado2;
@@ -108,17 +109,21 @@ public class PrincipalPanel extends JFrame {
 		arrayCarros.add(new Carros("Suv", "BMW", "XM", 2024, "/paneles/xm.png", "Automatico", 500));        
 		arrayCarros.add(new Carros("Suv", "Chevrolet", "Blazer", 2024, "/paneles/blazer.png", "Automatico", 300));
 		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
-		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
-//		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/wrangler.png", "ExampleText", 0));
+		
+//		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/bugatata.png", "ExampleText", 0));
 		
 		
+		this.panelAniadir = new AniadirCarro(vehiculos, arrayCarros);
 		this.login = new Login(this);
 		this.registro = new Registro(this, login);
 		this.renta = new Renta(this, vehiculos, arrayCarros);
 		this.vehiculos = new Vehiculos(this, arrayCarros);
+		
 		login.setResizable(false);
 		registro.setResizable(false);
 		renta.setResizable(false);
+		vehiculos.setResizable(false);
+		
 		
 		
 		
@@ -374,12 +379,8 @@ public class PrincipalPanel extends JFrame {
 		imagenLogo.setIcon(new ImageIcon(getClass().getResource("logo_dahu_fondo2.png")));
 		panelDescripcion.add(imagenLogo);
 		
-		
 		fechaInicialSeleccionada = false;
 		fechaFinalSeleccionada = false;
-		
-		//-----------------------------------------------------------------------------------------------------------------------------------------------------------
-		
 		
 		JPanel panelImagen = new JPanel();
 		panelCentral.add(panelImagen);

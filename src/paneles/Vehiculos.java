@@ -32,6 +32,10 @@ public class Vehiculos extends JFrame {
 	private JPanel contentPane;
 	public static PrincipalPanel panelPrincipal;
 	private static Renta renta;
+	private static AniadirCarro panelAniadir;
+	private static Vehiculos frame;
+	private JPanel panel_5;
+	private ActionListener pressBotones;
 	
 
 	/**
@@ -41,10 +45,11 @@ public class Vehiculos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculos frame = new Vehiculos(panelPrincipal, panelPrincipal.getArrayCarros());
+					frame = new Vehiculos(panelPrincipal, panelPrincipal.getArrayCarros());
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,8 +63,12 @@ public class Vehiculos extends JFrame {
 	 * @param principal 
 	 */
 	public Vehiculos(PrincipalPanel panelPrincipal, ArrayList<Carros> arrayCarros) {
+		
 		Vehiculos.panelPrincipal = panelPrincipal;
 		renta = new Renta(panelPrincipal, this, arrayCarros);
+		
+		Vehiculos.panelAniadir = new AniadirCarro(this, arrayCarros);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
@@ -93,7 +102,7 @@ public class Vehiculos extends JFrame {
 		JLabel lblNewLabel_2_1 = new JLabel(".");
 		panel_2.add(lblNewLabel_2_1);
 		
-		JPanel panel_5 = new JPanel();
+		panel_5 = new JPanel();
 		
 //		-----------------------------------------------------------------------------------------------------------------------
 //		Paneles vehiculos y accion para los botones de Renta
@@ -105,7 +114,7 @@ public class Vehiculos extends JFrame {
         panel_5.setLayout(new GridLayout(0, 3, 0, 0));
         contentPane.add(panel_5, BorderLayout.CENTER);
         
-        ActionListener pressBotones = new ActionListener() {
+        pressBotones = new ActionListener() {
         	
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,6 +186,7 @@ public class Vehiculos extends JFrame {
 				panelPrincipal.setLocationRelativeTo(null);
 			}
 		});
+		
 		panel_4.setLayout(null);
 		panel_4.add(btnNewButton_6);
 		
@@ -187,6 +197,45 @@ public class Vehiculos extends JFrame {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 27));
 		panel_3.add(lblNewLabel);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(255, 255, 255, 0));
+		panel_3.add(panel_6);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(255, 255, 255, 0));
+		panel_3.add(panel_7);
+		panel_7.setLayout(null);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(120, 4, 57, 33);
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setIcon(new ImageIcon(Vehiculos.class.getResource("/paneles/add.png")));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+//				System.out.println(frame!=null);
+				dispose();
+				panelAniadir.setUndecorated(true);
+				panelAniadir.setVisible(true);
+				panelAniadir.setLocationRelativeTo(null);
+//				frame.setFocusableWindowState(false);
+			}
+		});
+		
+		panel_7.add(btnNewButton);
 	}
+	
+	public void actualizarLosVehiculos(ArrayList<Carros> arrayCarros) {
+        panel_5.removeAll(); 
+        for (Carros carro : arrayCarros) {
+            panel_5.add(carro.getPanelCatalog());
+            carro.getBtnRentar().addActionListener(pressBotones); 
+        }
+       
+        panel_5.revalidate();
+        panel_5.repaint();
+    }
 	
 }
