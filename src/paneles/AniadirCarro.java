@@ -37,7 +37,13 @@ public class AniadirCarro extends JFrame {
 	private JTextField txtFTransmision;
 	private JTextField txtFCosto;
 	private int anio;
-	private int costo;
+	private double costo;
+	
+	private JLabel lblTitulo;
+	private JButton btnAniadir;
+	
+	private Carros carroSeleccionado;
+	
 
 	/**
 	 * Launch the application.
@@ -53,6 +59,55 @@ public class AniadirCarro extends JFrame {
 				}
 			}
 		});
+	}
+
+	public JTextField getTxtFNombre() {
+		return txtFNombre;
+	}
+	public void setTxtFNombre(JTextField txtFNombre) {
+		this.txtFNombre = txtFNombre;
+	}
+	public JTextField getTxtFMarca() {
+		return txtFMarca;
+	}
+	public void setTxtFMarca(JTextField txtFMarca) {
+		this.txtFMarca = txtFMarca;
+	}
+	public JTextField getTxtFModelo() {
+		return txtFModelo;
+	}
+	public void setTxtFModelo(JTextField txtFModelo) {
+		this.txtFModelo = txtFModelo;
+	}
+	public JTextField getTxtFAnio() {
+		return txtFAnio;
+	}
+	public void setTxtFAnio(JTextField txtFAnio) {
+		this.txtFAnio = txtFAnio;
+	}
+	public JTextField getTxtFTransmision() {
+		return txtFTransmision;
+	}
+	public void setTxtFTransmision(JTextField txtFTransmision) {
+		this.txtFTransmision = txtFTransmision;
+	}
+	public JTextField getTxtFCosto() {
+		return txtFCosto;
+	}
+	public void setTxtFCosto(JTextField txtFCosto) {
+		this.txtFCosto = txtFCosto;
+	}
+	public JLabel getLblTitulo() {
+		return lblTitulo;
+	}
+	public void setLblTitulo(JLabel lblTitulo) {
+		this.lblTitulo = lblTitulo;
+	}
+	public JButton getBtnAniadir() {
+		return btnAniadir;
+	}
+	public void setBtnAniadir(JButton btnAniadir) {
+		this.btnAniadir = btnAniadir;
 	}
 
 	/**
@@ -111,93 +166,93 @@ public class AniadirCarro extends JFrame {
 			}
 		});
 
-		JLabel lblNewLabel = new JLabel("Añadir Auto");
-		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 27));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		panel.add(lblNewLabel);
+		lblTitulo = new JLabel("Añadir Auto");
+		lblTitulo.setFont(new Font("Segoe UI", Font.PLAIN, 27));
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setForeground(new Color(255, 255, 255));
+		panel.add(lblTitulo);
 
 		JPanel panelCentral = new JPanel();
 		panelCentral.setBackground(new Color(255, 255, 255));
 		contentPane.add(panelCentral, BorderLayout.CENTER);
 		panelCentral.setLayout(null);
 
-		txtFNombre = new JTextField();
-		txtFNombre.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		txtFNombre.setColumns(10);
-		txtFNombre.setBorder(new LineBorder(Color.GRAY, 1, true));
-		txtFNombre.setBounds(40, 36, 366, 36);
-		panelCentral.add(txtFNombre);
-
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setForeground(new Color(0, 0, 0, 90));
 		lblNombre.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNombre.setBounds(40, 11, 124, 25);
 		panelCentral.add(lblNombre);
-
-		txtFMarca = new JTextField();
-		txtFMarca.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		txtFMarca.setColumns(10);
-		txtFMarca.setBorder(new LineBorder(Color.GRAY, 1, true));
-		txtFMarca.setBounds(40, 108, 366, 36);
-		panelCentral.add(txtFMarca);
-
+		
 		JLabel lblMarca = new JLabel("Marca");
 		lblMarca.setForeground(new Color(0, 0, 0, 90));
 		lblMarca.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblMarca.setBounds(40, 83, 124, 25);
 		panelCentral.add(lblMarca);
-
-		txtFModelo = new JTextField();
-		txtFModelo.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		txtFModelo.setColumns(10);
-		txtFModelo.setBorder(new LineBorder(Color.GRAY, 1, true));
-		txtFModelo.setBounds(40, 180, 366, 36);
-		panelCentral.add(txtFModelo);
-
+		
 		JLabel lblModelo = new JLabel("Modelo");
 		lblModelo.setForeground(new Color(0, 0, 0, 90));
 		lblModelo.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblModelo.setBounds(40, 155, 124, 25);
 		panelCentral.add(lblModelo);
-
-		txtFAnio = new JTextField();
-		txtFAnio.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		txtFAnio.setColumns(10);
-		txtFAnio.setBorder(new LineBorder(Color.GRAY, 1, true));
-		txtFAnio.setBounds(40, 252, 366, 36);
-		panelCentral.add(txtFAnio);
-
+		
 		JLabel lblAnio = new JLabel("Año");
 		lblAnio.setForeground(new Color(0, 0, 0, 90));
 		lblAnio.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblAnio.setBounds(40, 227, 124, 25);
 		panelCentral.add(lblAnio);
-
+		
 		JLabel lblTransmision = new JLabel("Transmision");
 		lblTransmision.setForeground(new Color(0, 0, 0, 90));
 		lblTransmision.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblTransmision.setBounds(40, 299, 124, 25);
 		panelCentral.add(lblTransmision);
+		
+		JLabel lbCosto = new JLabel("Costo p/dia");
+		lbCosto.setForeground(new Color(0, 0, 0, 90));
+		lbCosto.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		lbCosto.setBounds(40, 373, 124, 25);
+		panelCentral.add(lbCosto);
+		
+		txtFNombre = new JTextField();
+		txtFNombre.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		txtFNombre.setColumns(10);
+		txtFNombre.setBorder(new LineBorder(Color.GRAY, 1, true));
+		txtFNombre.setBounds(40, 36, 188, 36);
+		panelCentral.add(txtFNombre);
+
+		txtFMarca = new JTextField();
+		txtFMarca.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		txtFMarca.setColumns(10);
+		txtFMarca.setBorder(new LineBorder(Color.GRAY, 1, true));
+		txtFMarca.setBounds(40, 108, 188, 36);
+		panelCentral.add(txtFMarca);
+
+		txtFModelo = new JTextField();
+		txtFModelo.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		txtFModelo.setColumns(10);
+		txtFModelo.setBorder(new LineBorder(Color.GRAY, 1, true));
+		txtFModelo.setBounds(40, 180, 188, 36);
+		panelCentral.add(txtFModelo);
+
+		txtFAnio = new JTextField();
+		txtFAnio.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		txtFAnio.setColumns(10);
+		txtFAnio.setBorder(new LineBorder(Color.GRAY, 1, true));
+		txtFAnio.setBounds(40, 252, 142, 36);
+		panelCentral.add(txtFAnio);
 
 		txtFTransmision = new JTextField();
 		txtFTransmision.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		txtFTransmision.setColumns(10);
 		txtFTransmision.setBorder(new LineBorder(Color.GRAY, 1, true));
-		txtFTransmision.setBounds(40, 324, 366, 36);
+		txtFTransmision.setBounds(40, 324, 188, 36);
 		panelCentral.add(txtFTransmision);
-
-		JLabel lbCosto = new JLabel("Costo p/dia");
-		lbCosto.setForeground(new Color(0, 0, 0, 90));
-		lbCosto.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		lbCosto.setBounds(40, 371, 124, 25);
-		panelCentral.add(lbCosto);
 
 		txtFCosto = new JTextField();
 		txtFCosto.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		txtFCosto.setColumns(10);
 		txtFCosto.setBorder(new LineBorder(Color.GRAY, 1, true));
-		txtFCosto.setBounds(40, 396, 366, 36);
+		txtFCosto.setBounds(40, 396, 142, 36);
 		panelCentral.add(txtFCosto);
 
 		JPanel panel_1 = new JPanel() {
@@ -221,12 +276,15 @@ public class AniadirCarro extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNewLabel_1);
 
-		JButton btnAniadir = new JButton("Añadir");
+		btnAniadir = new JButton("Añadir");
 		btnAniadir.setBackground(Color.white);
 		panel_1.add(btnAniadir);
 		btnAniadir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				btnAniadir.setText("Añadir");
+				lblTitulo.setText("Añadir carro");
+				
 				txtFNombre.setBorder(new LineBorder(Color.black, 1));
 				txtFMarca.setBorder(new LineBorder(Color.black, 1));
 				txtFModelo.setBorder(new LineBorder(Color.black, 1));
@@ -262,7 +320,7 @@ public class AniadirCarro extends JFrame {
 						txtFCosto.setBorder(new LineBorder(Color.red, 2));
 					}
 //		            JOptionPane.showMessageDialog(null, "Faltan campos por rellenar", "Rellene Campos", JOptionPane.WARNING_MESSAGE);
-				}else {
+				}
 					try {
 						anio = Integer.parseInt(auxAnio);
 					} catch (Exception e2) {
@@ -271,29 +329,38 @@ public class AniadirCarro extends JFrame {
 					    return;
 					}
 					try {
-						costo = Integer.parseInt(auxCosto);
+						costo = Double.parseDouble(auxCosto);
 					} catch (Exception e3) {
 						JOptionPane.showMessageDialog(null, "El costo debe ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
 					    txtFCosto.setBorder(new LineBorder(Color.RED));
 					    return;
 					}
+
+					if(carroSeleccionado == null) {
+						arrayCarros.add(new Carros(auxNombre, auxMarca, auxModelo, anio, "/paneles/bugatata.png", auxTransmision, costo));
+					} else {
+						carroSeleccionado.setNombre(auxNombre);
+						carroSeleccionado.setMarca(auxMarca);
+						carroSeleccionado.setModelo(auxModelo);
+						carroSeleccionado.setAnio(anio);
+						carroSeleccionado.setTransmision(auxTransmision);
+						carroSeleccionado.setCosto(costo);
+						
+					}
+					
 //					JOptionPane.showMessageDialog(null, "Carro creado con exito", "Carro añadido", JOptionPane.INFORMATION_MESSAGE);
 					System.out.println(arrayCarros.size());
-					arrayCarros.add(new Carros(auxNombre, auxMarca, auxModelo, anio, "/paneles/bugatata.png", auxTransmision, costo));
-					System.out.println(arrayCarros.size());
-					txtFNombre.setText("");
-					txtFMarca.setText("");
-					txtFModelo.setText("");
-					txtFTransmision.setText("");
-					txtFAnio.setText("");
-					txtFCosto.setText("");			
-					dispose();
+					
+					
+					limpiarTxtFields();
+					
 					vehiculos.actualizarLosVehiculos(arrayCarros);
+					dispose();
 					vehiculos.setVisible(true);
 					renta.actualizarComboBox(arrayCarros);
 					vehiculos.setLocationRelativeTo(null);
 				}
-			}
+			
 		});
 
 		JLabel lblNewLabel_1_1 = new JLabel("");
@@ -301,4 +368,29 @@ public class AniadirCarro extends JFrame {
 		panel_1.add(lblNewLabel_1_1);
 
 	}
+	
+	public void cambiarTxtFields(String nombre, String marca, String modelo, String anio, String transmision, String costo, Carros carro) {
+		lblTitulo.setText("Editar Carro");
+		btnAniadir.setText("Editar");
+		
+		txtFNombre.setText(nombre);
+		txtFMarca.setText(marca);
+		txtFModelo.setText(modelo);
+		txtFTransmision.setText(transmision);
+		txtFAnio.setText(anio);
+		txtFCosto.setText(costo);	
+		
+		carroSeleccionado = carro;  
+	}
+	
+	public void limpiarTxtFields() {
+	    txtFNombre.setText("");
+	    txtFMarca.setText("");
+	    txtFModelo.setText("");
+	    txtFTransmision.setText("");
+	    txtFAnio.setText("");
+	    txtFCosto.setText("");
+	}
+	
+	
 }

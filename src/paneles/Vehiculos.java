@@ -37,6 +37,13 @@ public class Vehiculos extends JFrame {
 	private JPanel panel_5;
 	private ActionListener pressBotones;
 	private ActionListener accionBtnElim;
+	private ActionListener accionBtnEdit;
+	
+	private String foto;
+	private String marca;
+	private String nombre;
+	private String modelo;
+	private String transmision;
 	
 	
 
@@ -125,11 +132,11 @@ public class Vehiculos extends JFrame {
 					for (Carros carro : arrayCarros) {
 						if (carro.getBtnRentar() == btnRentar) {
 //							HACER GLOBALITOS
-							String foto = carro.getFoto();
-							String marca = carro.getMarca();
-							String nombre = carro.getNombre();
-							String modelo = carro.getModelo();
-							String transmision = carro.getTransmision();
+							foto = carro.getFoto();
+							marca = carro.getMarca();
+							nombre = carro.getNombre();
+							modelo = carro.getModelo();
+							transmision = carro.getTransmision();
 							
 //							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
 							
@@ -163,10 +170,43 @@ public class Vehiculos extends JFrame {
 							actualizarLosVehiculos(arrayCarros);
 							renta.actualizarComboBox(arrayCarros);
 							System.out.println("Carrito morido");
-//                            break; 
+//                          break; 
                         }
                     }
                 	
+                }
+            }
+        };
+        
+        accionBtnEdit = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	if (e.getSource() instanceof JButton) {
+            		dispose();
+                	JButton btnEdit = (JButton) e.getSource();
+                	ArrayList<Carros> auxiliarArrayCarros = new ArrayList<>(arrayCarros);
+					for (Carros carro : auxiliarArrayCarros) {
+						if (carro.getBtnEdit() == btnEdit) {
+							nombre = carro.getNombre();
+							marca = carro.getMarca();
+							modelo = carro.getModelo();
+							transmision = carro.getTransmision();
+							int auxAnio = carro.getAnio();
+							String anio = ""+auxAnio;
+							double auxCosto = carro.getCosto();
+							String costo = ""+auxCosto;
+							
+							actualizarLosVehiculos(arrayCarros);
+//							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
+							panelAniadir.cambiarTxtFields(nombre, marca, modelo, anio, transmision, costo, carro);
+//							renta.actualizarComboBox(arrayCarros);
+							System.out.println("Carrito editado");
+                          break; 
+                        }
+                    }
+					panelAniadir.setUndecorated(true);
+					panelAniadir.setVisible(true);
+					panelAniadir.setLocationRelativeTo(null);
                 }
             }
         };
@@ -176,6 +216,7 @@ public class Vehiculos extends JFrame {
             panel_5.add(carro.getPanelCatalog());
             carro.getBtnRentar().addActionListener(pressBotones);
             carro.getBtnElim().addActionListener(accionBtnElim);
+            carro.getBtnEdit().addActionListener(accionBtnEdit);
         }
         
         
@@ -241,6 +282,10 @@ public class Vehiculos extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				panelAniadir.getLblTitulo().setText("Aniadir");
+				panelAniadir.getBtnAniadir().setText("Añadir carro");
+				panelAniadir.limpiarTxtFields();
 //				System.out.println(frame!=null);
 				dispose();
 				panelAniadir.setUndecorated(true);
@@ -261,6 +306,7 @@ public class Vehiculos extends JFrame {
             panel_5.add(carro.getPanelCatalog());
             carro.getBtnRentar().addActionListener(pressBotones); 
             carro.getBtnElim().addActionListener(accionBtnElim);
+            carro.getBtnEdit().addActionListener(accionBtnEdit);
         }
        
         panel_5.revalidate();

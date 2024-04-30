@@ -257,7 +257,7 @@ public class PrincipalPanel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				//Documente lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
+				//Documenté lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
 				//---------------------
 				dispose();
 				vehiculos.setVisible(true);
