@@ -83,6 +83,8 @@ public class PrincipalPanel extends JFrame {
 		this.btnRegistro = btnRegistro;
 	}
 
+//	Podria crear en la instancia el arraylist para poder pasarselo a todos los demas
+	
 	public PrincipalPanel() {
 		this.login = new Login(this);
 		this.registro = new Registro(this, login);

@@ -81,13 +81,13 @@ public class Vehiculos extends JFrame {
 //		Cambia los labels que se imprimen en el panel de renta al seleccionar algun carro
 //		Inicializar Objetos Carritos dentro del arraylist
 		arrayCarros = new ArrayList<Carros>();
-		arrayCarros.add(new Carros("Deportivo", "Chevrolet", "Camaro", 2027, "/paneles/camaroncito.png", "Automatico", 85));		
-		arrayCarros.add(new Carros("Deportivo", "Nissan", "GTR", 2024, "/paneles/gtr.png", "Automatico", 1000));
+		arrayCarros.add(new Carros("Deportivo", "Chevrolet", "Camaro RS", 2027, "/paneles/camaroncito.png", "Automatico", 85));		
+		arrayCarros.add(new Carros("Deportivo", "Nissan", "GTR R35", 2024, "/paneles/gtr.png", "Automatico", 1000));
 		arrayCarros.add(new Carros("Deportivo", "Lamborghini", "Huracan STO", 2021, "/paneles/huracan.png", "Automatico", 3000));
-		arrayCarros.add(new Carros("Suv", "BMW", "Huracan", 2024, "/paneles/xm.png", "Automatico", 500));        
-		arrayCarros.add(new Carros("Suv", "Chevrolet", "Huracan", 2024, "/paneles/blazer.png", "Automatico", 300));
-		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Huracan", 2024, "/paneles/wrangler.png", "Automatico", 350));
-		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Huracan", 2024, "/paneles/wrangler.png", "Automatico", 350));
+		arrayCarros.add(new Carros("Suv", "BMW", "XM", 2024, "/paneles/xm.png", "Automatico", 500));        
+		arrayCarros.add(new Carros("Suv", "Chevrolet", "Blazer", 2024, "/paneles/blazer.png", "Automatico", 300));
+		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
+		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/wrangler.png", "ExampleText", 0));
 		
 		
         panel_5.setLayout(new GridLayout(0, 3, 0, 0));
@@ -101,6 +101,7 @@ public class Vehiculos extends JFrame {
                 	JButton btnRentar = (JButton) e.getSource(); 
 					for (Carros carro : arrayCarros) {
 						if (carro.getBtnRentar() == btnRentar) {
+//							HACER GLOBALITOS
 							String foto = carro.getFoto();
 							String marca = carro.getMarca();
 							String nombre = carro.getNombre();

@@ -169,6 +169,21 @@ public class Renta extends JFrame {
 		comboBox.setBounds(10, 182, 116, 22);
 		panel_1.add(comboBox);
 		
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Funca");
+				String auxItemCB = (String) comboBox.getSelectedItem();
+				if(auxItemCB.equals("Wrangler")) {
+					System.out.println("Selecciono WRANGLER");
+					
+				}
+				
+			}
+		});
+		
+		
 		JLabel lblNewLabel_4 = new JLabel("Fecha Inicial");
 		lblNewLabel_4.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblNewLabel_4.setBounds(281, 109, 109, 14);
