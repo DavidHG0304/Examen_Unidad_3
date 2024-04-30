@@ -47,7 +47,6 @@ public class Renta extends JFrame {
 //	private ArrayList<String> nombresItems = new ArrayList<>();
 	
 	private JComboBox comboBoxItems;
-	
 
 	/**
 	 * Launch the application.
@@ -180,30 +179,36 @@ public class Renta extends JFrame {
         for (Carros carro : arrayCarros) {
         	comboBoxItems.addItem(carro.getModelo());
 		}
+        
+        for(int i = 0; i < arrayCarros.size(); i++) {
+        	
+        }
+        
 		comboBoxItems.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selectedModelo = (String) comboBoxItems.getSelectedItem();
+				
 				for (Carros carro : arrayCarros) {
 					if (carro.getModelo().equals(selectedModelo)) {
-
 						String foto = carro.getFoto();
 						String marca = carro.getMarca();
 						String nombre = carro.getNombre();
 						String modelo = carro.getModelo();
 						String transmision = carro.getTransmision();
-
 						int auxAnio = carro.getAnio();
 						String anio = "" + auxAnio;
 						double auxCosto = carro.getCosto();
 						String costo = "" + auxCosto;
-
+						
 						cambiarElementos(foto, nombre, marca, modelo, anio, transmision, costo);
 						break;
 					}
 				}
 			}
 		});
+		
+		
 		
 		JLabel lblNewLabel_4 = new JLabel("Fecha Inicial");
 		lblNewLabel_4.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -419,6 +424,11 @@ public class Renta extends JFrame {
 		lblAnio.setText(anio);
 		lblTransmision.setText(transmision);
 		lblCosto.setText(costo);
+		
 	}
+	
+	public void cambiarSeleccionComboBox(Carros carro) {
+        comboBoxItems.setSelectedItem(carro.getModelo());
+    }
 	
 }

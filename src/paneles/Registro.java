@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -125,7 +126,8 @@ public class Registro extends JFrame {
 		panel_1.add(lblLema);
 		
 		JLabel lblNewLabel_3 = new JLabel("*Logo*");
-		lblNewLabel_3.setBounds(190, 359, 46, 14);
+		lblNewLabel_3.setBounds(146, 332, 157, 151);
+		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("logo_dahu_mini.png")));
 		panel_1.add(lblNewLabel_3);
 		
 		JPanel panel_2 = new JPanel();

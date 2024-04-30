@@ -369,63 +369,14 @@ public class PrincipalPanel extends JFrame {
 		lblLoewmIpsumDolor.setBounds(55, 217, 407, 47);
 		panelDescripcion.add(lblLoewmIpsumDolor);
 		
-		//Calendario Prueba
-		//-----------------------------------------------------------------------------------------------------------------------------------------------------------
-		
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(50, 45, 70, 20);
-		panelDescripcion.add(dateChooser);
-		
-		JDateChooser dateChooser1 = new JDateChooser();
-		dateChooser1.setBounds(200, 45, 70, 20);
-		panelDescripcion.add(dateChooser1);
+		JLabel imagenLogo = new JLabel();
+		imagenLogo.setBounds(34, 33, 417, 289);
+		imagenLogo.setIcon(new ImageIcon(getClass().getResource("logo_dahu_fondo2.png")));
+		panelDescripcion.add(imagenLogo);
 		
 		
 		fechaInicialSeleccionada = false;
 		fechaFinalSeleccionada = false;
-		
-		dateChooser.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
-		    @Override
-		    public void propertyChange(PropertyChangeEvent evt) {
-		        if ("date".equals(evt.getPropertyName())) {
-		            Date fechaSeleccionada = dateChooser.getDate();
-		            if (fechaSeleccionada != null) {
-		                Calendar calendar = Calendar.getInstance();
-		                calendar.setTime(fechaSeleccionada);
-		                diaSeleccionado1 = calendar.get(Calendar.DAY_OF_MONTH);
-		                System.out.println("Fecha inicio: " + diaSeleccionado1);
-		                System.out.println(fechaSeleccionada != null && dateChooser1.getDate() != null && diaSeleccionado2 < diaSeleccionado1);
-		                // Verificar si ambas fechas son válidas
-		                if (fechaSeleccionada != null && dateChooser1.getDate() != null && diaSeleccionado2 < diaSeleccionado1 ) {
-		                    JOptionPane.showMessageDialog(null, "Ha ingresado una fecha inválida", "Aviso", JOptionPane.WARNING_MESSAGE);
-		                    dateChooser.setDate(null);
-		                }
-		            }
-		        }
-		    }
-		});
-		
-		dateChooser1.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
-		    @Override
-		    public void propertyChange(PropertyChangeEvent evt) {
-		        if ("date".equals(evt.getPropertyName())) {
-		            Date fechaSeleccionada = dateChooser1.getDate();
-		            if (fechaSeleccionada != null) {
-		                Calendar calendar = Calendar.getInstance();
-		                calendar.setTime(fechaSeleccionada);
-		                diaSeleccionado2 = calendar.get(Calendar.DAY_OF_MONTH);
-		                System.out.println("Fecha fin: " + diaSeleccionado2);
-		                System.out.println(fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 );
-		                // Verificar si ambas fechas son válidas
-		                if (fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 ) {
-		                    JOptionPane.showMessageDialog(null, "Ha ingresado una fecha inválida", "Aviso", JOptionPane.WARNING_MESSAGE);
-		                    dateChooser1.setDate(null);
-		                }
-		            }
-		        }
-		    }
-		});
 		
 		//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 		
@@ -483,7 +434,7 @@ public class PrincipalPanel extends JFrame {
 		
 		JLabel lblTxt4 = new JLabel("5000+");
 		lblTxt4.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		lblTxt4.setForeground(new Color(255, 255, 255));
+		lblTxt4.setForeground(new Color(255, 255, 255));                                
 		lblTxt4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt4);
 		

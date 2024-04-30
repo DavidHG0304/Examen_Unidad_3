@@ -148,7 +148,8 @@ public class Carros {
         
         btnRentar = new JButton("Rentar");
         btnRentar.setBackground(new Color(0, 128, 255));
-        btnRentar.setBounds(198, 172, 89, 23);
+        btnRentar.setForeground(Color.white);
+        btnRentar.setBounds(198, 155, 89, 23);
         panelC.add(btnRentar);
         
 		return panelC;
