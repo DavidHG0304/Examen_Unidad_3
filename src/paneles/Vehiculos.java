@@ -37,6 +37,7 @@ public class Vehiculos extends JFrame {
 	private JPanel panel_5;
 	private ActionListener pressBotones;
 	
+	
 
 	/**
 	 * Launch the application.
@@ -62,12 +63,12 @@ public class Vehiculos extends JFrame {
 	 * @param arrayCarros 
 	 * @param principal 
 	 */
+	
 	public Vehiculos(PrincipalPanel panelPrincipal, ArrayList<Carros> arrayCarros) {
-		
 		Vehiculos.panelPrincipal = panelPrincipal;
 		renta = new Renta(panelPrincipal, this, arrayCarros);
 		
-		Vehiculos.panelAniadir = new AniadirCarro(this, arrayCarros);
+		Vehiculos.panelAniadir = new AniadirCarro(this, arrayCarros, renta);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
@@ -130,13 +131,14 @@ public class Vehiculos extends JFrame {
 							String modelo = carro.getModelo();
 							String transmision = carro.getTransmision();
 							
-							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
+//							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
 							
 							int auxAnio = carro.getAnio();
 							String anio = ""+auxAnio;
 							double auxCosto = carro.getCosto();
 							String costo = ""+auxCosto;
 							
+//							renta.actualizarComboBox(arrayCarros);
 							renta.cambiarSeleccionComboBox(carro);
 							renta.cambiarElementos(foto, nombre, marca, modelo, anio, transmision, costo);
                             break; 
@@ -227,6 +229,8 @@ public class Vehiculos extends JFrame {
 		panel_7.add(btnNewButton);
 	}
 	
+	
+
 	public void actualizarLosVehiculos(ArrayList<Carros> arrayCarros) {
         panel_5.removeAll(); 
         for (Carros carro : arrayCarros) {

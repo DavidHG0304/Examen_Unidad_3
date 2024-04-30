@@ -29,6 +29,7 @@ public class AniadirCarro extends JFrame {
 	private JPanel contentPane;
 	private static Vehiculos vehiculos;
 	private static PrincipalPanel panelPrincipal;
+	private static Renta renta;
 	private JTextField txtFNombre;
 	private JTextField txtFMarca;
 	private JTextField txtFModelo;
@@ -45,7 +46,7 @@ public class AniadirCarro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AniadirCarro frame = new AniadirCarro(vehiculos, panelPrincipal.getArrayCarros());
+					AniadirCarro frame = new AniadirCarro(vehiculos, panelPrincipal.getArrayCarros(), renta);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,8 +60,9 @@ public class AniadirCarro extends JFrame {
 	 * 
 	 * @param vehiculos
 	 */
-	public AniadirCarro(Vehiculos vehiculos, ArrayList<Carros> arrayCarros) {
+	public AniadirCarro(Vehiculos vehiculos, ArrayList<Carros> arrayCarros, Renta renta) {
 		this.vehiculos = vehiculos;
+		this.renta = renta;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 467, 585);
@@ -288,6 +290,7 @@ public class AniadirCarro extends JFrame {
 					dispose();
 					vehiculos.actualizarLosVehiculos(arrayCarros);
 					vehiculos.setVisible(true);
+					renta.actualizarComboBox(arrayCarros);
 					vehiculos.setLocationRelativeTo(null);
 				}
 			}

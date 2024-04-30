@@ -113,7 +113,7 @@ public class PrincipalPanel extends JFrame {
 //		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/bugatata.png", "ExampleText", 0));
 		
 		
-		this.panelAniadir = new AniadirCarro(vehiculos, arrayCarros);
+		this.panelAniadir = new AniadirCarro(vehiculos, arrayCarros, renta);
 		this.login = new Login(this);
 		this.registro = new Registro(this, login);
 		this.renta = new Renta(this, vehiculos, arrayCarros);
