@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -43,6 +44,10 @@ public class Renta extends JFrame {
 	private JLabel lblTransmision;
 	private JLabel lblCosto;
 	
+//	private ArrayList<String> nombresItems = new ArrayList<>();
+	
+	private JComboBox comboBoxItems;
+	
 
 	/**
 	 * Launch the application.
@@ -51,7 +56,7 @@ public class Renta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Renta frame = new Renta(panelPrincipal);
+					Renta frame = new Renta(panelPrincipal, vehiculos, panelPrincipal.getArrayCarros());
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -72,10 +77,11 @@ public class Renta extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param arrayCarros 
 	 */
-	public Renta(PrincipalPanel panelPrincipal) {
-		this.panelPrincipal = panelPrincipal;
-		this.vehiculos = new Vehiculos(panelPrincipal, this);
+	public Renta(PrincipalPanel panelPrincipal, Vehiculos vehiculos, ArrayList<Carros> arrayCarros) {
+		Renta.panelPrincipal = panelPrincipal;
+		Renta.vehiculos = vehiculos;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
@@ -164,25 +170,40 @@ public class Renta extends JFrame {
 		lblAnio.setBounds(10, 275, 116, 14);
 		panel_1.add(lblAnio);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Blazer", "Wrangler", "Huracan STO", "GTR R35", "Camaro RS", "XM"}));
-		comboBox.setBounds(10, 182, 116, 22);
-		panel_1.add(comboBox);
 		
-		comboBox.addActionListener(new ActionListener() {
-			
+		comboBoxItems = new JComboBox();
+		comboBoxItems.setBounds(10, 182, 116, 22);
+        panel_1.add(comboBoxItems);
+        
+        
+		//https://stackoverflow.com/questions/17887927/adding-items-to-a-jcombobox
+        for (Carros carro : arrayCarros) {
+        	comboBoxItems.addItem(carro.getModelo());
+		}
+		comboBoxItems.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Funca");
-				String auxItemCB = (String) comboBox.getSelectedItem();
-				if(auxItemCB.equals("Wrangler")) {
-					System.out.println("Selecciono WRANGLER");
-					
+				String selectedModelo = (String) comboBoxItems.getSelectedItem();
+				for (Carros carro : arrayCarros) {
+					if (carro.getModelo().equals(selectedModelo)) {
+
+						String foto = carro.getFoto();
+						String marca = carro.getMarca();
+						String nombre = carro.getNombre();
+						String modelo = carro.getModelo();
+						String transmision = carro.getTransmision();
+
+						int auxAnio = carro.getAnio();
+						String anio = "" + auxAnio;
+						double auxCosto = carro.getCosto();
+						String costo = "" + auxCosto;
+
+						cambiarElementos(foto, nombre, marca, modelo, anio, transmision, costo);
+						break;
+					}
 				}
-				
 			}
 		});
-		
 		
 		JLabel lblNewLabel_4 = new JLabel("Fecha Inicial");
 		lblNewLabel_4.setFont(new Font("Segoe UI", Font.PLAIN, 14));

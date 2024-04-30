@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -45,6 +46,11 @@ public class PrincipalPanel extends JFrame {
 	private int diaSeleccionado2;
 	boolean fechaInicialSeleccionada = false;
 	boolean fechaFinalSeleccionada = false;
+	
+	private ArrayList<Carros> arrayCarros;
+	
+	
+	
 	
 	
 	Font palabrasNormal = new Font("Arial", Font.BOLD, 20);
@@ -82,17 +88,40 @@ public class PrincipalPanel extends JFrame {
 	public void setBtnRegistro(JButton btnRegistro) {
 		this.btnRegistro = btnRegistro;
 	}
+	
+	public ArrayList<Carros> getArrayCarros() {
+		return arrayCarros;
+	}
+	
+	public void setArrayCarros(ArrayList<Carros> arrayCarros) {
+		this.arrayCarros = arrayCarros;
+	}
 
 //	Podria crear en la instancia el arraylist para poder pasarselo a todos los demas
 	
+
 	public PrincipalPanel() {
+		arrayCarros = new ArrayList<Carros>();
+		arrayCarros.add(new Carros("Deportivo", "Chevrolet", "Camaro RS", 2027, "/paneles/camaroncito.png", "Automatico", 85));		
+		arrayCarros.add(new Carros("Deportivo", "Nissan", "GTR R35", 2024, "/paneles/gtr.png", "Automatico", 1000));
+		arrayCarros.add(new Carros("Deportivo", "Lamborghini", "Huracan STO", 2021, "/paneles/huracan.png", "Automatico", 3000));
+		arrayCarros.add(new Carros("Suv", "BMW", "XM", 2024, "/paneles/xm.png", "Automatico", 500));        
+		arrayCarros.add(new Carros("Suv", "Chevrolet", "Blazer", 2024, "/paneles/blazer.png", "Automatico", 300));
+		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
+		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
+//		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/wrangler.png", "ExampleText", 0));
+		
+		
 		this.login = new Login(this);
 		this.registro = new Registro(this, login);
-		this.renta = new Renta(this);
-		this.vehiculos = new Vehiculos(this, renta);
+		this.renta = new Renta(this, vehiculos, arrayCarros);
+		this.vehiculos = new Vehiculos(this, arrayCarros);
 		login.setResizable(false);
 		registro.setResizable(false);
 		renta.setResizable(false);
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		panel_principal = new JPanel() {

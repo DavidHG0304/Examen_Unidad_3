@@ -28,7 +28,7 @@ public class Vehiculos extends JFrame {
 	private JPanel contentPane;
 	public static PrincipalPanel panelPrincipal;
 	private static Renta renta;
-	private ArrayList<Carros> arrayCarros;
+	
 
 	/**
 	 * Launch the application.
@@ -37,7 +37,7 @@ public class Vehiculos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculos frame = new Vehiculos(panelPrincipal, renta);
+					Vehiculos frame = new Vehiculos(panelPrincipal, panelPrincipal.getArrayCarros());
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					frame.setResizable(false);
@@ -50,11 +50,12 @@ public class Vehiculos extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param arrayCarros 
 	 * @param principal 
 	 */
-	public Vehiculos(PrincipalPanel panelPrincipal, Renta renta) {
-		this.panelPrincipal = panelPrincipal;
-		this.renta = renta;
+	public Vehiculos(PrincipalPanel panelPrincipal, ArrayList<Carros> arrayCarros) {
+		Vehiculos.panelPrincipal = panelPrincipal;
+		renta = new Renta(panelPrincipal, this, arrayCarros);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
@@ -80,20 +81,14 @@ public class Vehiculos extends JFrame {
 //		Paneles vehiculos y accion para los botones de Renta
 //		Cambia los labels que se imprimen en el panel de renta al seleccionar algun carro
 //		Inicializar Objetos Carritos dentro del arraylist
-		arrayCarros = new ArrayList<Carros>();
-		arrayCarros.add(new Carros("Deportivo", "Chevrolet", "Camaro RS", 2027, "/paneles/camaroncito.png", "Automatico", 85));		
-		arrayCarros.add(new Carros("Deportivo", "Nissan", "GTR R35", 2024, "/paneles/gtr.png", "Automatico", 1000));
-		arrayCarros.add(new Carros("Deportivo", "Lamborghini", "Huracan STO", 2021, "/paneles/huracan.png", "Automatico", 3000));
-		arrayCarros.add(new Carros("Suv", "BMW", "XM", 2024, "/paneles/xm.png", "Automatico", 500));        
-		arrayCarros.add(new Carros("Suv", "Chevrolet", "Blazer", 2024, "/paneles/blazer.png", "Automatico", 300));
-		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
-		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/wrangler.png", "ExampleText", 0));
+		
 		
 		
         panel_5.setLayout(new GridLayout(0, 3, 0, 0));
         contentPane.add(panel_5, BorderLayout.CENTER);
         
         ActionListener pressBotones = new ActionListener() {
+        	
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() instanceof JButton) {
@@ -107,6 +102,8 @@ public class Vehiculos extends JFrame {
 							String nombre = carro.getNombre();
 							String modelo = carro.getModelo();
 							String transmision = carro.getTransmision();
+							
+							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
 							
 							int auxAnio = carro.getAnio();
 							String anio = ""+auxAnio;
