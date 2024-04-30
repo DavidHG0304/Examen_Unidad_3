@@ -36,6 +36,7 @@ public class Vehiculos extends JFrame {
 	private static Vehiculos frame;
 	private JPanel panel_5;
 	private ActionListener pressBotones;
+	private ActionListener accionBtnElim;
 	
 	
 
@@ -116,7 +117,6 @@ public class Vehiculos extends JFrame {
         contentPane.add(panel_5, BorderLayout.CENTER);
         
         pressBotones = new ActionListener() {
-        	
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() instanceof JButton) {
@@ -151,10 +151,34 @@ public class Vehiculos extends JFrame {
             }
         };
         
+        accionBtnElim = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	if (e.getSource() instanceof JButton) {
+                	JButton btnEliminar = (JButton) e.getSource();
+                	ArrayList<Carros> auxiliarArrayCarros = new ArrayList<>(arrayCarros);
+					for (Carros carro : auxiliarArrayCarros) {
+						if (carro.getBtnElim() == btnEliminar) {
+							arrayCarros.remove(carro);
+							actualizarLosVehiculos(arrayCarros);
+							renta.actualizarComboBox(arrayCarros);
+							System.out.println("Carrito morido");
+//                            break; 
+                        }
+                    }
+                	
+                }
+            }
+        };
+        
+        
         for (Carros carro : arrayCarros) {
             panel_5.add(carro.getPanelCatalog());
             carro.getBtnRentar().addActionListener(pressBotones);
+            carro.getBtnElim().addActionListener(accionBtnElim);
         }
+        
+        
 		
 //		-----------------------------------------------------------------------------------------------------------------------
 		JPanel panel_3 = new JPanel(){
@@ -236,6 +260,7 @@ public class Vehiculos extends JFrame {
         for (Carros carro : arrayCarros) {
             panel_5.add(carro.getPanelCatalog());
             carro.getBtnRentar().addActionListener(pressBotones); 
+            carro.getBtnElim().addActionListener(accionBtnElim);
         }
        
         panel_5.revalidate();
