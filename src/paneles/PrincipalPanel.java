@@ -109,7 +109,7 @@ public class PrincipalPanel extends JFrame {
 		this.registro = new Registro(this, login);
 		this.renta = new Renta(this, vehiculos, arrayCarros);
 		this.vehiculos = new Vehiculos(this, arrayCarros);
-		this.crearRenta = new CrearRenta(arrayCarros, renta);
+		this.crearRenta = new CrearRenta(this,arrayCarros, renta);
 		
 		login.setResizable(false);
 		registro.setResizable(false);

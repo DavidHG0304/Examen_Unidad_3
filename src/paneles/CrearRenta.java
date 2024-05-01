@@ -20,6 +20,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Font;
@@ -52,7 +53,7 @@ public class CrearRenta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearRenta frame = new CrearRenta(panelPrincipal.getArrayCarros(), renta);
+					CrearRenta frame = new CrearRenta(panelPrincipal,panelPrincipal.getArrayCarros(), renta);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +65,8 @@ public class CrearRenta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearRenta(ArrayList<Carros> arrayCarros, Renta renta) {
+	public CrearRenta(PrincipalPanel panelPrincipal,ArrayList<Carros> arrayCarros, Renta renta) {
+		CrearRenta.panelPrincipal = panelPrincipal;
 		this.renta = renta;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -255,6 +257,14 @@ public class CrearRenta extends JFrame {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnNewButton.setBackground(new Color(5, 117, 230));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JOptionPane.showMessageDialog(null, "Renta confirmada con exito \nDisfrute sus dias con el auto\n","Dirigiendose al inicio", JOptionPane.INFORMATION_MESSAGE);
+				panelPrincipal.setVisible(true);
+				panelPrincipal.setLocationRelativeTo(null);
+			}
+		});
 		
 	}
 	
@@ -263,13 +273,13 @@ public class CrearRenta extends JFrame {
 		lblNombreCar.setText("Nombre: "+nombre);
 	    lblMarcaCar.setText("Marca: "+marca);
 	    lblModeloCar.setText("Modelo: "+modelo);
-	    lblAnioCar.setText("Anio "+anio);
+	    lblAnioCar.setText("Año "+anio);
 	    lblTransmisionCar.setText("Transmision: " +transmision);
 	    lblCostoCar.setText("Costo P/D $"+costo);
 	    lblNombreCliente.setText("Nombre: "+nombreCl);
 	    lblMetodoP.setText("Metodo de Pago: "+metodoP);
 	    lblTotalPagar.setText("Total a pagar: "+totalPag);
-	    lblDiasRenta.setText("Dias renta: "+diasRenta);
+	    lblDiasRenta.setText("Dias a rentar: "+diasRenta);
 	    
 	}
 }

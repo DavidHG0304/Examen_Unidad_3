@@ -112,7 +112,7 @@ public class Renta extends JFrame {
 		Renta.panelPrincipal = panelPrincipal;
 		Renta.vehiculos = vehiculos;
 		
-		crearRenta = new CrearRenta(arrayCarros, this);
+		crearRenta = new CrearRenta(panelPrincipal,arrayCarros, this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
 		contentPane = new JPanel();
