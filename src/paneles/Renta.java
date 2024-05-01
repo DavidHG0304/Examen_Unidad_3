@@ -142,7 +142,7 @@ public class Renta extends JFrame {
 		lblCargoPorSeguro.setBounds(10, 110, 115, 18);
 		resumenPrecio.add(lblCargoPorSeguro);
 		
-		lblPrecioPorDias = new JLabel("Precio por 0 :");
+		lblPrecioPorDias = new JLabel("Precio por dias :");
 		lblPrecioPorDias.setFont(new Font("Segoe UI", Font.PLAIN, 13));
  		lblPrecioPorDias.setBounds(10, 172, 154, 14);
  		resumenPrecio.add(lblPrecioPorDias);
@@ -159,7 +159,9 @@ public class Renta extends JFrame {
 		resumenPrecio.add(lblNewLabel);
 		
 		lblCostoPorDias = new JLabel("$" + lblCosto.getText());
+		lblCostoPorDias.setBackground(new Color(255, 255, 255));
 		lblCostoPorDias.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblCostoPorDias.setOpaque(true);
 		lblCostoPorDias.setBounds(180, 171, 66, 14);
 		resumenPrecio.add(lblCostoPorDias);
 		
@@ -427,7 +429,7 @@ public class Renta extends JFrame {
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar);
+				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
 				vehiculos.setVisible(true);
 				vehiculos.setLocationRelativeTo(null);
 			}
@@ -543,7 +545,7 @@ public class Renta extends JFrame {
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar);
+				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
 			}
 		});
 		btnLimpiar.setForeground(Color.WHITE);
@@ -560,7 +562,7 @@ public class Renta extends JFrame {
     }
 	
 	public void cambiarElementos(String rutaImagen, String nombre, String marca, String modelo, String anio, String transmision, String costo) {
-		limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar);
+		limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
 		lblImgCarros.setIcon(new ImageIcon(Renta.class.getResource(rutaImagen)));
 	    lblNombre.setText(nombre);
 	    lblMarca.setText(marca);
@@ -581,6 +583,8 @@ public class Renta extends JFrame {
 		textField_3.setText("");
 		lblTotalAPagar.setText("  Total a pagar:          $");
 		lblCostoPorDias.setText("$ ");
+		lblPrecioPorDias.setText("Precio por dias :");
+		repaint();
 	}
 	
 	public void actualizarComboBox(ArrayList<Carros> arrayCarros) {

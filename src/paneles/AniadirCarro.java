@@ -384,6 +384,7 @@ public class AniadirCarro extends JFrame {
 		txtFCosto.setText(costo);	
 		
 		carroSeleccionado = carro;  
+		
 	}
 	
 	public void limpiarTxtFields() {
@@ -393,6 +394,8 @@ public class AniadirCarro extends JFrame {
 	    txtFTransmision.setText("");
 	    txtFAnio.setText("");
 	    txtFCosto.setText("");
+	    
+	    carroSeleccionado = null;
 	}
 	
 	

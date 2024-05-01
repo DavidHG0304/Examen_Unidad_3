@@ -45,6 +45,8 @@ public class Vehiculos extends JFrame {
 	private String modelo;
 	private String transmision;
 	
+	private Carros carroSeleccionado;
+	
 	
 
 	/**
@@ -170,7 +172,7 @@ public class Vehiculos extends JFrame {
 							actualizarLosVehiculos(arrayCarros);
 							renta.actualizarComboBox(arrayCarros);
 							System.out.println("Carrito morido");
-//                          break; 
+                          break; 
                         }
                     }
                 	
@@ -182,7 +184,7 @@ public class Vehiculos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
             	if (e.getSource() instanceof JButton) {
-            		dispose();
+            		
                 	JButton btnEdit = (JButton) e.getSource();
 					for (Carros carro : arrayCarros) {
 						if (carro.getBtnEdit() == btnEdit) {
@@ -200,7 +202,10 @@ public class Vehiculos extends JFrame {
 							panelAniadir.cambiarTxtFields(nombre, marca, modelo, anio, transmision, costo, carro);
 //							renta.actualizarComboBox(arrayCarros);
 							System.out.println("Carrito editado");
-                          break; 
+							actualizarLosVehiculos(arrayCarros);
+							renta.actualizarComboBox(arrayCarros);
+							dispose();
+							break; 
                         }
                     }
 					panelAniadir.setUndecorated(true);
@@ -208,7 +213,6 @@ public class Vehiculos extends JFrame {
 					panelAniadir.setLocationRelativeTo(null);
 					panelAniadir.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 }
-            	actualizarLosVehiculos(arrayCarros);
             }
         };
         
@@ -296,6 +300,7 @@ public class Vehiculos extends JFrame {
 			}
 		});
 		
+		actualizarLosVehiculos(arrayCarros);
 		panel_7.add(btnNewButton);
 	}
 	
@@ -308,6 +313,7 @@ public class Vehiculos extends JFrame {
             carro.getBtnRentar().addActionListener(pressBotones); 
             carro.getBtnElim().addActionListener(accionBtnElim);
             carro.getBtnEdit().addActionListener(accionBtnEdit);
+            
         }
        
         panel_5.revalidate();
