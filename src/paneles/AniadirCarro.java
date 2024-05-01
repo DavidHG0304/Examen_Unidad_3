@@ -282,8 +282,6 @@ public class AniadirCarro extends JFrame {
 		btnAniadir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				btnAniadir.setText("Añadir");
-				lblTitulo.setText("Añadir carro");
 				txtFNombre.setBorder(new LineBorder(Color.black, 1));
 				txtFMarca.setBorder(new LineBorder(Color.black, 1));
 				txtFModelo.setBorder(new LineBorder(Color.black, 1));
@@ -297,8 +295,7 @@ public class AniadirCarro extends JFrame {
 				String auxAnio = new String(txtFAnio.getText());
 				String auxCosto = new String(txtFCosto.getText());
 
-				if (auxNombre.isEmpty() || auxMarca.isEmpty() || auxModelo.isEmpty() || auxAnio.isEmpty()
-						|| auxTransmision.isEmpty() || auxCosto.isEmpty()) {
+				if (auxNombre.isEmpty() || auxMarca.isEmpty() || auxModelo.isEmpty() || auxAnio.isEmpty() || auxTransmision.isEmpty() || auxCosto.isEmpty()) {
 					if (auxNombre.isEmpty()) {
 						txtFNombre.setBorder(new LineBorder(Color.red, 2));
 					}
@@ -335,26 +332,30 @@ public class AniadirCarro extends JFrame {
 					txtFCosto.setBorder(new LineBorder(Color.RED));
 					return;
 				}
-
-				if (carroSeleccionado == null) {
-					arrayCarros.add(new Carros(auxNombre, auxMarca, auxModelo, anio, "/paneles/bugatata.png",
-							auxTransmision, costo));
-				} else {
+				
+				if(carroSeleccionado == null &&(!auxNombre.isEmpty() && !auxMarca.isEmpty() && !auxModelo.isEmpty() && !auxAnio.isEmpty() && !auxTransmision.isEmpty() && !auxCosto.isEmpty())) {
+					arrayCarros.add(new Carros(auxNombre, auxMarca, auxModelo, anio, "/paneles/bugatata.png", auxTransmision, costo));
+					System.out.println(arrayCarros.size());
+					limpiarTxtFields();
+					dispose();
+					vehiculos.actualizarLosVehiculos(arrayCarros);
+					vehiculos.setVisible(true);
+					renta.actualizarComboBox(arrayCarros);
+					vehiculos.setLocationRelativeTo(null);
+				}else if(!auxNombre.isEmpty() && !auxMarca.isEmpty() && !auxModelo.isEmpty() && !auxAnio.isEmpty() && !auxTransmision.isEmpty() && !auxCosto.isEmpty()){
 					carroSeleccionado.setNombre(auxNombre);
 					carroSeleccionado.setMarca(auxMarca);
 					carroSeleccionado.setModelo(auxModelo);
 					carroSeleccionado.setAnio(anio);
 					carroSeleccionado.setTransmision(auxTransmision);
 					carroSeleccionado.setCosto(costo);
+					vehiculos.actualizarLosVehiculos(arrayCarros);
+					vehiculos.setVisible(true);
+					renta.actualizarComboBox(arrayCarros);
+					vehiculos.setLocationRelativeTo(null);
+					dispose();
 				}
 //					JOptionPane.showMessageDialog(null, "Carro creado con exito", "Carro añadido", JOptionPane.INFORMATION_MESSAGE);
-				System.out.println(arrayCarros.size());
-				limpiarTxtFields();
-				vehiculos.actualizarLosVehiculos(arrayCarros);
-				dispose();
-				vehiculos.setVisible(true);
-				renta.actualizarComboBox(arrayCarros);
-				vehiculos.setLocationRelativeTo(null);
 			}
 		});
 		JLabel lblNewLabel_1_1 = new JLabel("");
