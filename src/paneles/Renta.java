@@ -427,7 +427,7 @@ public class Renta extends JFrame {
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
+				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar);
 				vehiculos.setVisible(true);
 				vehiculos.setLocationRelativeTo(null);
 			}
@@ -506,7 +506,10 @@ public class Renta extends JFrame {
 		                	
 		                	dias=diaSeleccionado2-diaSeleccionado1;
 		                	lblPrecioPorDias.setText("Precio por " + dias +  " :");
-		                	costo = Double.parseDouble(lblCosto.getText());
+		                	if(!lblCosto.getText().isEmpty()) {
+		                		
+		                		costo = Double.parseDouble(lblCosto.getText());
+		                	}
 		                	costoPorDias=costo*dias;
 		                	if(dias==0) {
 		                		costo+=50;
@@ -540,7 +543,7 @@ public class Renta extends JFrame {
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
+				limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar);
 			}
 		});
 		btnLimpiar.setForeground(Color.WHITE);
@@ -557,7 +560,7 @@ public class Renta extends JFrame {
     }
 	
 	public void cambiarElementos(String rutaImagen, String nombre, String marca, String modelo, String anio, String transmision, String costo) {
-		limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar, lblCostoPorDias);
+		limpiarDatos(textField_5, dateChooser, dateChooser1, textField, textField_1, textField_2, textField_3, lblCosto, lblPrecioPorDias, lblTotalAPagar);
 		lblImgCarros.setIcon(new ImageIcon(Renta.class.getResource(rutaImagen)));
 	    lblNombre.setText(nombre);
 	    lblMarca.setText(marca);
@@ -568,7 +571,7 @@ public class Renta extends JFrame {
 	}
 	
 	public void limpiarDatos(JTextField textField_5, JDateChooser dateChooser, JDateChooser dateChooser1, JTextField textField, JTextField textField_1,
-			JTextField textField_2, JTextField textField_3, JLabel costo, JLabel lblPrecioPorDias, JLabel lblTotalAPagar, JLabel lblCostoPorDias) {
+			JTextField textField_2, JTextField textField_3, JLabel lblPrecioPorDias, JLabel lblTotalAPagar, JLabel lblCostoPorDias) {
 		textField_5.setText("");
 		dateChooser.setDate(null);
 		dateChooser1.setDate(null);
@@ -576,8 +579,6 @@ public class Renta extends JFrame {
 		textField_1.setText("");
 		textField_2.setText("");
 		textField_3.setText("");
-		lblCosto.setText("");
-		lblPrecioPorDias.setText("Precio por 0 :");
 		lblTotalAPagar.setText("  Total a pagar:          $");
 		lblCostoPorDias.setText("$ ");
 	}

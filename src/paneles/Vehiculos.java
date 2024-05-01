@@ -184,8 +184,7 @@ public class Vehiculos extends JFrame {
             	if (e.getSource() instanceof JButton) {
             		dispose();
                 	JButton btnEdit = (JButton) e.getSource();
-                	ArrayList<Carros> auxiliarArrayCarros = new ArrayList<>(arrayCarros);
-					for (Carros carro : auxiliarArrayCarros) {
+					for (Carros carro : arrayCarros) {
 						if (carro.getBtnEdit() == btnEdit) {
 							nombre = carro.getNombre();
 							marca = carro.getMarca();
@@ -197,7 +196,7 @@ public class Vehiculos extends JFrame {
 							String costo = ""+auxCosto;
 							
 							actualizarLosVehiculos(arrayCarros);
-//							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
+							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
 							panelAniadir.cambiarTxtFields(nombre, marca, modelo, anio, transmision, costo, carro);
 //							renta.actualizarComboBox(arrayCarros);
 							System.out.println("Carrito editado");
@@ -207,7 +206,9 @@ public class Vehiculos extends JFrame {
 					panelAniadir.setUndecorated(true);
 					panelAniadir.setVisible(true);
 					panelAniadir.setLocationRelativeTo(null);
+					panelAniadir.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 }
+            	actualizarLosVehiculos(arrayCarros);
             }
         };
         

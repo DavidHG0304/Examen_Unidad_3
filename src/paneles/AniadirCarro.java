@@ -354,11 +354,14 @@ public class AniadirCarro extends JFrame {
 					
 					limpiarTxtFields();
 					
+					
 					vehiculos.actualizarLosVehiculos(arrayCarros);
 					dispose();
 					vehiculos.setVisible(true);
 					renta.actualizarComboBox(arrayCarros);
 					vehiculos.setLocationRelativeTo(null);
+					
+					
 				}
 			
 		});
