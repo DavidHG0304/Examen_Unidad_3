@@ -174,7 +174,7 @@ public class Login extends JFrame {
 				if (auxUsuario.isEmpty() || auxContra.isEmpty() || auxUsuario.equals("Ingrese su usuario")) {
 					if(auxContra.isEmpty() &&  auxUsuario.isEmpty()) {
 						textField.setBorder(new LineBorder(Color.red, 2));
-						textField_1.setBorder(new LineBorder(Color.red, 2));
+						textField.setBorder(new LineBorder(Color.red, 2));
 //						JOptionPane.showMessageDialog(null, "Faltan campos por rellenar", "Rellene Campos", JOptionPane.WARNING_MESSAGE);
 					}
 					else if (auxUsuario.isEmpty()) {
@@ -187,9 +187,11 @@ public class Login extends JFrame {
 		            }
 		        }else {
 		        	hayCuenta = true;
-		            JOptionPane.showMessageDialog(null, "Ha iniciado sesion", "Ingreso Exitoso", JOptionPane.INFORMATION_MESSAGE);
+//		            JOptionPane.showMessageDialog(null, "Ha iniciado sesion", "Ingreso Exitoso", JOptionPane.INFORMATION_MESSAGE);
 //		            JOptionPane.showMessageDialog(null, "Una vez inicia sesion podria mandarlo al panel directamente de los vehiculos para consultarlos", "IDEA", JOptionPane.INFORMATION_MESSAGE);
 		            dispose();
+		            textField.setText("");
+		            textField_1.setText("");
 		            panelPrincipal.getBtnLogin().setEnabled(false);
 					panelPrincipal.getBtnRegistro().setText("Log Out");
 		            panelPrincipal.getBtnLogin().setText(auxUsuario);;
