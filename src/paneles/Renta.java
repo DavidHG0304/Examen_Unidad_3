@@ -686,7 +686,7 @@ public class Renta extends JFrame {
 		
 		JLabel lblCargoPorSeguro = new JLabel("Cargo por seguro: ");
 		lblCargoPorSeguro.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		lblCargoPorSeguro.setBounds(10, 110, 115, 18);
+		lblCargoPorSeguro.setBounds(10, 110, 140, 18);
 		resumenPrecio.add(lblCargoPorSeguro);
 		
 		lblPrecioPorDias = new JLabel("Precio por dias :");
@@ -846,6 +846,14 @@ public class Renta extends JFrame {
 		lblTotalAPagar.setText("  Total a pagar:          $");
 		lblCostoPorDias.setText("$ ");
 		lblPrecioPorDias.setText("Precio por dias :");
+		
+		textField_5.setBorder(new LineBorder(Color.black, 1));
+		textField.setBorder(new LineBorder(Color.black, 1));
+		textField_1.setBorder(new LineBorder(Color.black, 1));
+		textField_2.setBorder(new LineBorder(Color.black, 1));
+		textField_3.setBorder(new LineBorder(Color.black, 1));
+		dateChooser.setBorder(new LineBorder(Color.black,1));
+		dateChooser1.setBorder(new LineBorder(Color.black,1));
 		repaint();
 	}
 	

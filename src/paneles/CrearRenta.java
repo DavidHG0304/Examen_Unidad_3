@@ -259,8 +259,8 @@ public class CrearRenta extends JFrame {
 		btnNewButton.setBackground(new Color(5, 117, 230));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
 				JOptionPane.showMessageDialog(null, "Renta confirmada con exito \nDisfrute sus dias con el auto\n","Dirigiendose al inicio", JOptionPane.INFORMATION_MESSAGE);
+				dispose();
 				panelPrincipal.setVisible(true);
 				panelPrincipal.setLocationRelativeTo(null);
 			}
