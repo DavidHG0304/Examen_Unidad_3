@@ -12,6 +12,7 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -32,6 +33,8 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
@@ -73,6 +76,8 @@ public class Renta extends JFrame {
 	private JPanel resumenPrecio;
 	private JLabel lblMarca;
 	private JLabel lblCosto;
+	private JComboBox<String> comboBox_1;
+	private String metodoP;
 	
 
 	/**
@@ -185,8 +190,8 @@ public class Renta extends JFrame {
 		                Calendar calendar = Calendar.getInstance();
 		                calendar.setTime(fechaSeleccionada);
 		                diaSeleccionado1 = calendar.get(Calendar.DAY_OF_MONTH);
-		                System.out.println("Fecha inicio: " + diaSeleccionado1);
-		                System.out.println(fechaSeleccionada != null && dateChooser1.getDate() != null && diaSeleccionado2 < diaSeleccionado1);
+//		                System.out.println("Fecha inicio: " + diaSeleccionado1);
+//		                System.out.println(fechaSeleccionada != null && dateChooser1.getDate() != null && diaSeleccionado2 < diaSeleccionado1);
 		                
 		                if(fechaSeleccionada != null && dateChooser1.getDate() != null && dateChooser.getDate() != null) {
 		                	
@@ -228,8 +233,8 @@ public class Renta extends JFrame {
 		                Calendar calendar = Calendar.getInstance();
 		                calendar.setTime(fechaSeleccionada);
 		                diaSeleccionado2 = calendar.get(Calendar.DAY_OF_MONTH);
-		                System.out.println("Fecha fin: " + diaSeleccionado2);
-		                System.out.println(fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 );
+//		                System.out.println("Fecha fin: " + diaSeleccionado2);
+//		                System.out.println(fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 );
 		                
 		                if(fechaSeleccionada != null && dateChooser1.getDate() != null && dateChooser.getDate() != null) {
 		                	
@@ -253,7 +258,7 @@ public class Renta extends JFrame {
 		             
 		        		resumenPrecio.add(lblPrecioPorDias);
 		        		
-		                System.out.println(dias);
+//		                System.out.println(dias);
 
 		                // Verificar si ambas fechas son válidas
 		                if (fechaSeleccionada != null && dateChooser.getDate() != null && diaSeleccionado2 < diaSeleccionado1 ) {
@@ -316,7 +321,7 @@ public class Renta extends JFrame {
 		opciones.setBounds(625, 350, 259, 225);
 		panelCentral.add(opciones);
 		
-		JButton btnRentar = new JButton("Rentar");
+		JButton btnRentar = new JButton("Continuar");
 		btnRentar.setForeground(Color.WHITE);
 		btnRentar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		btnRentar.setBackground(new Color(0, 128, 255));
@@ -327,11 +332,129 @@ public class Renta extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				textField_5.setBorder(new LineBorder(Color.black, 1));
+				textField.setBorder(new LineBorder(Color.black, 1));
+				textField_1.setBorder(new LineBorder(Color.black, 1));
+				textField_2.setBorder(new LineBorder(Color.black, 1));
+				textField_3.setBorder(new LineBorder(Color.black, 1));
+				dateChooser.setBorder(new LineBorder(Color.black,1));
+				dateChooser1.setBorder(new LineBorder(Color.black,1));
 				
-				dispose();
-				crearRenta.setUndecorated(true);
-				crearRenta.setVisible(true);
-				crearRenta.setLocationRelativeTo(null);
+				String auxNombreUsuario = new String(textField_5.getText());
+				String nombreTarjeta = new String(textField.getText());
+				String numTarjeta = new String(textField_1.getText());
+				String anioTarjeta = new String(textField_2.getText());
+				String cvvTarjeta = new String(textField_3.getText());
+				metodoP = (String) comboBox_1.getSelectedItem();
+				
+				if (metodoP.equals("Tarjeta")) {
+					if (auxNombreUsuario.isEmpty() || nombreTarjeta.isEmpty() || numTarjeta.isEmpty() || anioTarjeta.isEmpty() || cvvTarjeta.isEmpty() || totalPagar == 0) {
+						if (auxNombreUsuario.isEmpty()) {
+							textField_5.setBorder(new LineBorder(Color.red, 2));
+						}
+						if (nombreTarjeta.isEmpty()) {
+							textField.setBorder(new LineBorder(Color.red, 2));
+						}
+						if (numTarjeta.isEmpty()) {
+							textField_1.setBorder(new LineBorder(Color.red, 2));
+						}
+						if (anioTarjeta.isEmpty()) {
+							textField_2.setBorder(new LineBorder(Color.red, 2));
+						}
+						if (cvvTarjeta.isEmpty()) {
+							textField_3.setBorder(new LineBorder(Color.red, 2));
+						}
+//						JOptionPane.showMessageDialog(null, "Hay datos vacios o Erroneos", "Error",JOptionPane.INFORMATION_MESSAGE);
+					}
+
+					if (!numTarjeta.isEmpty()) {
+						try {
+							int testNumTarj = Integer.parseInt(numTarjeta);
+						} catch (Exception e2) {
+							JOptionPane.showMessageDialog(null, "El numero de tarjeta debe ser un valor numérico.",	"Error", JOptionPane.ERROR_MESSAGE);
+							textField_1.setBorder(new LineBorder(Color.red, 2));
+							return;
+						}
+					}
+					if (!anioTarjeta.isEmpty()) {
+						try {
+							int añoVencT = Integer.parseInt(anioTarjeta);
+						} catch (Exception e3) {
+							JOptionPane.showMessageDialog(null, "El año debe de ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
+							textField_2.setBorder(new LineBorder(Color.red, 2));
+							return;
+						}
+					}
+					if (!cvvTarjeta.isEmpty()) {
+						try {
+							int cvvT = Integer.parseInt(cvvTarjeta);
+						} catch (Exception e3) {
+							JOptionPane.showMessageDialog(null, "El cvv ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
+							textField_3.setBorder(new LineBorder(Color.red, 2));
+							return;
+						}
+					}
+					if (totalPagar == 0) {
+						dateChooser.setBorder(new LineBorder(Color.red, 2));
+						dateChooser1.setBorder(new LineBorder(Color.red, 2));
+					}
+					
+					else if(!auxNombreUsuario.isEmpty() && !nombreTarjeta.isEmpty() && !numTarjeta.isEmpty() && !anioTarjeta.isEmpty() && !cvvTarjeta.isEmpty() && totalPagar != 0){
+						Icon rutaImagen = lblImgCarros.getIcon();
+						String nombre = lblNombre.getText();
+						String marca = lblMarca.getText();
+						String modelo = lblModelo.getText();
+						int anioAux = Integer.parseInt(lblAnio.getText());
+						String anioC = ""+anioAux;
+						String transmision = lblTransmision.getText();
+						String costoDia = ""+lblCosto.getText();
+						String nombreCl = textField_5.getText();
+						metodoP = (String) comboBox_1.getSelectedItem();
+						String totalPag ="$ "+totalPagar;
+						String diasRenta = ""+dias;
+						
+						crearRenta.cambiarElementos(rutaImagen, nombre, marca, modelo, anioC, transmision, costoDia, nombreCl, metodoP, totalPag, diasRenta);
+						dispose();
+						crearRenta.setUndecorated(true);
+						crearRenta.setVisible(true);
+						crearRenta.setLocationRelativeTo(null);
+					}
+					
+					
+					
+				}
+				else if(metodoP.equals("Transferencia") &&(auxNombreUsuario.isEmpty() || totalPagar == 0)){
+					if(auxNombreUsuario.isEmpty()) {
+						textField_5.setBorder(new LineBorder(Color.red, 2));
+					}
+					if(totalPagar == 0) {
+						System.out.println("No hay calculo de fechas");
+						dateChooser.setBorder(new LineBorder(Color.red,2));
+						dateChooser1.setBorder(new LineBorder(Color.red,2));
+					}
+					JOptionPane.showMessageDialog(null, "Faltan cosos");
+				}
+				else {
+					
+					Icon rutaImagen = lblImgCarros.getIcon();
+					String nombre = lblNombre.getText();
+					String marca = lblMarca.getText();
+					String modelo = lblModelo.getText();
+					int anioAux = Integer.parseInt(lblAnio.getText());
+					String anioC = ""+anioAux;
+					String transmision = lblTransmision.getText();
+					String costoDia = ""+lblCosto.getText();
+					String nombreCl = textField_5.getText();
+					metodoP = (String) comboBox_1.getSelectedItem();
+					String totalPag ="$ "+totalPagar;
+					String diasRenta = ""+dias;
+					
+					crearRenta.cambiarElementos(rutaImagen, nombre, marca, modelo, anioC, transmision, costoDia, nombreCl, metodoP, totalPag, diasRenta);
+					dispose();
+					crearRenta.setUndecorated(true);
+					crearRenta.setVisible(true);
+					crearRenta.setLocationRelativeTo(null);
+				}
 			}
 		});
 		
@@ -464,13 +587,13 @@ public class Renta extends JFrame {
 		formaDePago.add(lblNewLabel_7_1_1);
 		
 		String[] pago = { "Tarjeta", "Transferencia"};
-		
-		JComboBox<String> comboBox_1 = new JComboBox<>(pago);
+		comboBox_1 = new JComboBox<>(pago);
 		comboBox_1.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		
 		comboBox_1.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				JComboBox comboBox = (JComboBox) e.getSource();
 				switch ((String) comboBox.getSelectedItem()) {
 				case "Transferencia":
@@ -617,25 +740,25 @@ public class Renta extends JFrame {
 		lblImgCarros.setBounds(10, 41, 200, 130);
 		panelAutoRentar.add(lblImgCarros);
 		
-		JLabel lblNombre_1 = new JLabel("");
-		lblNombre_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblNombre_1.setBounds(10, 215, 81, 14);
-		panelAutoRentar.add(lblNombre_1);
+		lblNombre = new JLabel("");
+		lblNombre.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblNombre.setBounds(10, 215, 81, 14);
+		panelAutoRentar.add(lblNombre);
 		
 		lblMarca = new JLabel("");
 		lblMarca.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblMarca.setBounds(10, 240, 81, 14);
 		panelAutoRentar.add(lblMarca);
 		
-		JLabel lblModelo_1 = new JLabel("");
-		lblModelo_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblModelo_1.setBounds(97, 240, 81, 14);
-		panelAutoRentar.add(lblModelo_1);
+		lblModelo = new JLabel("");
+		lblModelo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblModelo.setBounds(97, 240, 81, 14);
+		panelAutoRentar.add(lblModelo);
 		
-		JLabel lblAnio_1 = new JLabel("");
-		lblAnio_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblAnio_1.setBounds(10, 275, 116, 14);
-		panelAutoRentar.add(lblAnio_1);
+		lblAnio = new JLabel("");
+		lblAnio.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblAnio.setBounds(10, 265, 116, 14);
+		panelAutoRentar.add(lblAnio);
 		
 		JLabel lblFechaInicial = new JLabel("Fecha Inicial");
 		lblFechaInicial.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -658,10 +781,10 @@ public class Renta extends JFrame {
 		textField_5.setBounds(281, 115, 155, 20);
 		panelAutoRentar.add(textField_5);
 		
-		JLabel lblTransmision_1 = new JLabel("");
-		lblTransmision_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblTransmision_1.setBounds(97, 216, 81, 14);
-		panelAutoRentar.add(lblTransmision_1);
+		lblTransmision = new JLabel("");
+		lblTransmision.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblTransmision.setBounds(97, 216, 81, 14);
+		panelAutoRentar.add(lblTransmision);
 		
 		
 		JPanel panelSubtitulo1 = new JPanel() {

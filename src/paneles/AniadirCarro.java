@@ -319,40 +319,43 @@ public class AniadirCarro extends JFrame {
 					}
 //		            JOptionPane.showMessageDialog(null, "Faltan campos por rellenar", "Rellene Campos", JOptionPane.WARNING_MESSAGE);
 				}
-					try {
-						anio = Integer.parseInt(auxAnio);
-					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(null, "El año debe ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
-					    txtFAnio.setBorder(new LineBorder(Color.RED));
-					    return;
-					}
-					try {
-						costo = Double.parseDouble(auxCosto);
-					} catch (Exception e3) {
-						JOptionPane.showMessageDialog(null, "El costo debe ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
-					    txtFCosto.setBorder(new LineBorder(Color.RED));
-					    return;
-					}
-
-					if(carroSeleccionado == null) {
-						arrayCarros.add(new Carros(auxNombre, auxMarca, auxModelo, anio, "/paneles/bugatata.png", auxTransmision, costo));
-					} else {
-						carroSeleccionado.setNombre(auxNombre);
-						carroSeleccionado.setMarca(auxMarca);
-						carroSeleccionado.setModelo(auxModelo);
-						carroSeleccionado.setAnio(anio);
-						carroSeleccionado.setTransmision(auxTransmision);
-						carroSeleccionado.setCosto(costo);
-					}
-//					JOptionPane.showMessageDialog(null, "Carro creado con exito", "Carro añadido", JOptionPane.INFORMATION_MESSAGE);
-					System.out.println(arrayCarros.size());
-					limpiarTxtFields();
-					vehiculos.actualizarLosVehiculos(arrayCarros);
-					dispose();
-					vehiculos.setVisible(true);
-					renta.actualizarComboBox(arrayCarros);
-					vehiculos.setLocationRelativeTo(null);
+				try {
+					anio = Integer.parseInt(auxAnio);
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "El año debe ser un valor numérico.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					txtFAnio.setBorder(new LineBorder(Color.RED));
+					return;
 				}
+				try {
+					costo = Double.parseDouble(auxCosto);
+				} catch (Exception e3) {
+					JOptionPane.showMessageDialog(null, "El costo debe ser un valor numérico.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					txtFCosto.setBorder(new LineBorder(Color.RED));
+					return;
+				}
+
+				if (carroSeleccionado == null) {
+					arrayCarros.add(new Carros(auxNombre, auxMarca, auxModelo, anio, "/paneles/bugatata.png",
+							auxTransmision, costo));
+				} else {
+					carroSeleccionado.setNombre(auxNombre);
+					carroSeleccionado.setMarca(auxMarca);
+					carroSeleccionado.setModelo(auxModelo);
+					carroSeleccionado.setAnio(anio);
+					carroSeleccionado.setTransmision(auxTransmision);
+					carroSeleccionado.setCosto(costo);
+				}
+//					JOptionPane.showMessageDialog(null, "Carro creado con exito", "Carro añadido", JOptionPane.INFORMATION_MESSAGE);
+				System.out.println(arrayCarros.size());
+				limpiarTxtFields();
+				vehiculos.actualizarLosVehiculos(arrayCarros);
+				dispose();
+				vehiculos.setVisible(true);
+				renta.actualizarComboBox(arrayCarros);
+				vehiculos.setLocationRelativeTo(null);
+			}
 		});
 		JLabel lblNewLabel_1_1 = new JLabel("");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);

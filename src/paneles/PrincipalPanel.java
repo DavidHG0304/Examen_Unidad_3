@@ -245,27 +245,26 @@ public class PrincipalPanel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				//Documenté lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
+				//Documenta lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
 				//---------------------
-				dispose();
-				vehiculos.setVisible(true);
-				vehiculos.setLocationRelativeTo(null);
+//				dispose();
+//				vehiculos.setVisible(true);
+//				vehiculos.setLocationRelativeTo(null);
 				//---------------------
 				
 				
-				/*
-				if(!login.getHayCuenta()){
+				if (!login.getHayCuenta()) {
 					dispose();
 					login.setVisible(true);
 					login.setLocationRelativeTo(null);
-				}if(login.getHayCuenta()){
+				}
+				if (login.getHayCuenta()) {
 					dispose();
 					vehiculos.setLocationRelativeTo(null);
 					vehiculos.setVisible(true);
 				}
-				*/					
-					
-				}
+
+			}
 		});
 		
 		btnLogin = new JButton("Login");
