@@ -369,7 +369,12 @@ public class Renta extends JFrame {
 
 					if (!numTarjeta.isEmpty()) {
 						try {
-							int testNumTarj = Integer.parseInt(numTarjeta);
+							Double testNumTarj = Double.parseDouble(numTarjeta);
+							if(numTarjeta.length() > 16 || numTarjeta.length() < 16) {
+								textField_1.setBorder(new LineBorder(Color.red, 2));
+								JOptionPane.showMessageDialog(null, "El Num de tarjeta es invalido", "Error", JOptionPane.ERROR_MESSAGE);
+								return;
+							}
 						} catch (Exception e2) {
 							JOptionPane.showMessageDialog(null, "El numero de tarjeta debe ser un valor numérico.",	"Error", JOptionPane.ERROR_MESSAGE);
 							textField_1.setBorder(new LineBorder(Color.red, 2));
@@ -387,13 +392,19 @@ public class Renta extends JFrame {
 					}
 					if (!cvvTarjeta.isEmpty()) {
 						try {
+							if(cvvTarjeta.length() > 3) {
+								textField_3.setBorder(new LineBorder(Color.red, 2));
+								JOptionPane.showMessageDialog(null, "El CVV es invalido", "Error", JOptionPane.ERROR_MESSAGE);
+								return;
+							}
 							int cvvT = Integer.parseInt(cvvTarjeta);
 						} catch (Exception e3) {
-							JOptionPane.showMessageDialog(null, "El cvv ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
 							textField_3.setBorder(new LineBorder(Color.red, 2));
+							JOptionPane.showMessageDialog(null, "El cvv debe de ser un valor numérico.", "Error", JOptionPane.ERROR_MESSAGE);
 							return;
 						}
 					}
+					
 					if (totalPagar == 0) {
 						dateChooser.setBorder(new LineBorder(Color.red, 2));
 						dateChooser1.setBorder(new LineBorder(Color.red, 2));
