@@ -34,27 +34,20 @@ public class PrincipalPanel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_principal;
-	
 	private Login login;
 	private Registro registro;
 	private Vehiculos vehiculos;
 	private JButton btnLogin;
 	private JButton btnRegistro;
 	private Renta renta;
+	private CrearRenta crearRenta;
 	private AniadirCarro panelAniadir;
-	
 	private int diaSeleccionado1;
 	private int diaSeleccionado2;
 	boolean fechaInicialSeleccionada = false;
 	boolean fechaFinalSeleccionada = false;
-	
 	private ArrayList<Carros> arrayCarros;
-	
-	
-	
-	
-	
-	Font palabrasNormal = new Font("Arial", Font.BOLD, 20);
+	GradientPaint gradiant = new GradientPaint(50.0f, 300.0f, new Color(0, 58, 156, 255), getWidth(), getHeight(),new Color(10, 112, 255, 255), true);
 	
 	/**
 	 * Launch the application.
@@ -110,22 +103,19 @@ public class PrincipalPanel extends JFrame {
 		arrayCarros.add(new Carros("Suv", "Chevrolet", "Blazer", 2024, "/paneles/blazer.png", "Automatico", 300));
 		arrayCarros.add(new Carros("Todoterreno", "Jeep", "Wrangler", 2024, "/paneles/wrangler.png", "Automatico", 350));
 		
-//		arrayCarros.add(new Carros("ExampleText", "ExampleText", "ExampleText", 0000, "/paneles/bugatata.png", "ExampleText", 0));
-		
 		
 		this.panelAniadir = new AniadirCarro(vehiculos, arrayCarros, renta);
 		this.login = new Login(this);
 		this.registro = new Registro(this, login);
 		this.renta = new Renta(this, vehiculos, arrayCarros);
 		this.vehiculos = new Vehiculos(this, arrayCarros);
+		this.crearRenta = new CrearRenta(arrayCarros, renta);
 		
 		login.setResizable(false);
 		registro.setResizable(false);
+		crearRenta.setResizable(false);
 		renta.setResizable(false);
 		vehiculos.setResizable(false);
-		
-		
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 682);
@@ -174,7 +164,6 @@ public class PrincipalPanel extends JFrame {
 		lblLogo4.setHorizontalAlignment(SwingConstants.CENTER);
 		panelLogos.add(lblLogo4);
 		
-		
 		JLabel lblLogo5 = new JLabel("");
 		lblLogo5.setIcon(new ImageIcon(getClass().getResource("ferrari.png")));
 		lblLogo5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -216,7 +205,7 @@ public class PrincipalPanel extends JFrame {
 		JPanel panelL = new JPanel() {
 			public void paintComponent(Graphics g) {
 				Graphics2D g2d = (Graphics2D) g;
-				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(40, 112, 255,255), getWidth(), getHeight(), new Color(10, 112, 255,255), true));
+				g2d.setPaint(gradiant);
 				g2d.fillRect(0, 0, getWidth(), getHeight());
 				g2d.setColor(getBackground());
 				g2d.drawOval(-120, 440, 350, 350);
@@ -224,7 +213,6 @@ public class PrincipalPanel extends JFrame {
 
 			}
 		};
-		
 		
 		panelL.setBackground(new Color(255, 255, 255));
 		panel.add(panelL);
@@ -257,27 +245,26 @@ public class PrincipalPanel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				//Documenté lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
+				//Documenta lo de abajo solo por mientras, para hacer pruebas y no tener que estar "logueandose a cada rato"
 				//---------------------
-				dispose();
-				vehiculos.setVisible(true);
-				vehiculos.setLocationRelativeTo(null);
+//				dispose();
+//				vehiculos.setVisible(true);
+//				vehiculos.setLocationRelativeTo(null);
 				//---------------------
 				
 				
-				/*
-				if(!login.getHayCuenta()){
+				if (!login.getHayCuenta()) {
 					dispose();
 					login.setVisible(true);
 					login.setLocationRelativeTo(null);
-				}if(login.getHayCuenta()){
+				}
+				if (login.getHayCuenta()) {
 					dispose();
 					vehiculos.setLocationRelativeTo(null);
 					vehiculos.setVisible(true);
 				}
-				*/					
-					
-				}
+
+			}
 		});
 		
 		btnLogin = new JButton("Login");
@@ -320,6 +307,7 @@ public class PrincipalPanel extends JFrame {
 					btnLogin.setEnabled(true);
 					registro.setHayCuenta(false);
 					login.setHayCuenta(false);
+					
 				}
 			}
 		});
@@ -391,7 +379,17 @@ public class PrincipalPanel extends JFrame {
 		panelImagen.add(labelIMG);
 		labelIMG.setIcon(new ImageIcon(getClass().getResource("camaron.png")));
 		
-		JLabel lblAux = new JLabel("");
+		JLabel lblAux = new JLabel("") {public void paintComponent(Graphics g) {
+
+				Graphics2D g2d = (Graphics2D) g;
+				g2d.setPaint(gradiant);
+				g2d.fillRect(0, 0, getWidth(), getHeight());
+				g2d.setColor(getBackground());
+				g2d.drawOval(-120, 440, 350, 350);
+				g2d.drawOval(-60, 460, 350, 350);
+
+			}
+		};
 		lblAux.setBackground(new Color(0, 128, 255));
 		lblAux.setBounds(239, 123, 222, 197);
 		lblAux.setOpaque(true);
@@ -402,7 +400,7 @@ public class PrincipalPanel extends JFrame {
 			public void paintComponent(Graphics g) {
 
 				Graphics2D g2d = (Graphics2D) g;
-				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(40, 112, 255,255), getWidth(), getHeight(), new Color(10, 112, 255,255), true));
+				g2d.setPaint(gradiant);
 				g2d.fillRect(0, 0, getWidth(), getHeight());
 				g2d.setColor(getBackground());
 				g2d.drawOval(-120, 440, 350, 350);
@@ -442,7 +440,6 @@ public class PrincipalPanel extends JFrame {
 		JLabel lblTxt5 = new JLabel("Autos");
 		lblTxt5.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblTxt5.setForeground(new Color(255, 255, 255));
-		
 		
 		lblTxt5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_inferior.add(lblTxt5);

@@ -38,16 +38,14 @@ public class Vehiculos extends JFrame {
 	private ActionListener pressBotones;
 	private ActionListener accionBtnElim;
 	private ActionListener accionBtnEdit;
-	
 	private String foto;
 	private String marca;
 	private String nombre;
 	private String modelo;
 	private String transmision;
-	
+	private static CrearRenta crearRenta;
 	private Carros carroSeleccionado;
-	
-	
+	GradientPaint gradiant = new GradientPaint(50.0f, 300.0f, new Color(0, 58, 156, 255), getWidth(), getHeight(),new Color(10, 112, 255, 255), true);
 
 	/**
 	 * Launch the application.
@@ -77,7 +75,6 @@ public class Vehiculos extends JFrame {
 	public Vehiculos(PrincipalPanel panelPrincipal, ArrayList<Carros> arrayCarros) {
 		Vehiculos.panelPrincipal = panelPrincipal;
 		renta = new Renta(panelPrincipal, this, arrayCarros);
-		
 		Vehiculos.panelAniadir = new AniadirCarro(this, arrayCarros, renta);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +82,6 @@ public class Vehiculos extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(83, 169, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
@@ -99,12 +95,11 @@ public class Vehiculos extends JFrame {
 			public void paintComponent(Graphics g) {
 
 				Graphics2D g2d = (Graphics2D) g;
-				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(40, 112, 255,255), getWidth(), getHeight(), new Color(10, 112, 255,255), true));
+				g2d.setPaint(gradiant);
 				g2d.fillRect(0, 0, getWidth(), getHeight());
 				g2d.setColor(getBackground());
 				g2d.drawOval(-120, 440, 350, 350);
 				g2d.drawOval(-60, 460, 350, 350);
-
 			}
 		};
 		contentPane.add(panel_2, BorderLayout.SOUTH);
@@ -119,8 +114,6 @@ public class Vehiculos extends JFrame {
 //		Paneles vehiculos y accion para los botones de Renta
 //		Cambia los labels que se imprimen en el panel de renta al seleccionar algun carro
 //		Inicializar Objetos Carritos dentro del arraylist
-		
-		
 		
         panel_5.setLayout(new GridLayout(0, 3, 0, 0));
         contentPane.add(panel_5, BorderLayout.CENTER);
@@ -175,7 +168,6 @@ public class Vehiculos extends JFrame {
                           break; 
                         }
                     }
-                	
                 }
             }
         };
@@ -198,7 +190,7 @@ public class Vehiculos extends JFrame {
 							String costo = ""+auxCosto;
 							
 							actualizarLosVehiculos(arrayCarros);
-							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
+//							System.out.println("\n"+foto+"\n"+marca+"\n"+nombre+"\n"+modelo+"\n"+transmision);
 							panelAniadir.cambiarTxtFields(nombre, marca, modelo, anio, transmision, costo, carro);
 //							renta.actualizarComboBox(arrayCarros);
 							System.out.println("Carrito editado");
@@ -216,22 +208,19 @@ public class Vehiculos extends JFrame {
             }
         };
         
-        
         for (Carros carro : arrayCarros) {
             panel_5.add(carro.getPanelCatalog());
             carro.getBtnRentar().addActionListener(pressBotones);
             carro.getBtnElim().addActionListener(accionBtnElim);
             carro.getBtnEdit().addActionListener(accionBtnEdit);
         }
-        
-        
 		
 //		-----------------------------------------------------------------------------------------------------------------------
 		JPanel panel_3 = new JPanel(){
 			public void paintComponent(Graphics g) {
 
 				Graphics2D g2d = (Graphics2D) g;
-				g2d.setPaint(new GradientPaint(0.0f, 0.0f, new Color(40, 112, 255,255), getWidth(), getHeight(), new Color(10, 112, 255,255), true));
+				g2d.setPaint(gradiant);
 				g2d.fillRect(0, 0, getWidth(), getHeight());
 				g2d.setColor(getBackground());
 				g2d.drawOval(-120, 440, 350, 350);
@@ -267,7 +256,7 @@ public class Vehiculos extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Catalogo",0);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 27));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 27));
 		panel_3.add(lblNewLabel);
 		
 		JPanel panel_6 = new JPanel();
@@ -287,9 +276,8 @@ public class Vehiculos extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				panelAniadir.getLblTitulo().setText("Aniadir");
-				panelAniadir.getBtnAniadir().setText("Añadir carro");
+				panelAniadir.getLblTitulo().setText("Aniadir Carro");
+				panelAniadir.getBtnAniadir().setText("Añadir");
 				panelAniadir.limpiarTxtFields();
 //				System.out.println(frame!=null);
 				dispose();
@@ -299,13 +287,9 @@ public class Vehiculos extends JFrame {
 //				frame.setFocusableWindowState(false);
 			}
 		});
-		
 		actualizarLosVehiculos(arrayCarros);
 		panel_7.add(btnNewButton);
 	}
-	
-	
-
 	public void actualizarLosVehiculos(ArrayList<Carros> arrayCarros) {
         panel_5.removeAll(); 
         for (Carros carro : arrayCarros) {
@@ -313,9 +297,7 @@ public class Vehiculos extends JFrame {
             carro.getBtnRentar().addActionListener(pressBotones); 
             carro.getBtnElim().addActionListener(accionBtnElim);
             carro.getBtnEdit().addActionListener(accionBtnEdit);
-            
         }
-       
         panel_5.revalidate();
         panel_5.repaint();
     }

@@ -172,15 +172,15 @@ public class Carros {
         
         btnElim = new JButton("");
         btnElim.setIcon(new ImageIcon(getClass().getResource("trash.png")));
-        btnElim.setBackground(new Color(0, 128, 255));
-        btnElim.setForeground(Color.white);
+        btnElim.setBackground(Color.white);
+        btnElim.setBorder(null);
         btnElim.setBounds(274, 10, 16, 16);
         panelC.add(btnElim);
         
         btnEdit = new JButton("");
         btnEdit.setIcon(new ImageIcon(getClass().getResource("pencil.png")));
-        btnEdit.setBackground(new Color(0, 128, 255));
-        btnEdit.setForeground(Color.white);
+        btnEdit.setBackground(Color.white);
+        btnEdit.setBorder(null);
         btnEdit.setBounds(244, 10, 16, 16);
         panelC.add(btnEdit);
         
